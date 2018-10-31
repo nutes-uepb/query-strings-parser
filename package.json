@@ -1,0 +1,24 @@
+{
+  "name": "query-string-filter",
+  "version": "0.0.2",
+  "description": "Node.js query string middleware",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha -w --opts test/mocha.opts test/**/*.spec.js",
+    "test:unit": "mocha -w --opts test/mocha.opts test/unit/*.spec.js",
+    "test:integration": "mocha -w --opts test/mocha.opts test/integration/*.spec.js"
+  },
+  "author": "Lucas Rocha <lucas.rocha@nutes.uepb.edu.br>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "node-mocks-http": "^1.7.3",
+    "supertest": "^3.3.0"
+  }
+}
