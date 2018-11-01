@@ -1,6 +1,6 @@
 const read = require('./lib/read')
 
-module.exports.options = function (params) {
+exports = function (params) {
     read.set_default()
     return read.options(params)
 }
