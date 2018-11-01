@@ -14,11 +14,6 @@ cache:
   directories:
   - node_modules
 before_script:
-- npm install
+- npm install && npm install coveralls mocha-lcov-reporter --save-dev
 script:
-- npm test
-after_script:
-- |
-  # Upload coverage to coveralls
-  npm install --save-dev coveralls
-  coveralls < ./coverage/lcov.info
+- npm run test:travis
