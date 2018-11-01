@@ -1,24 +1,39 @@
 {
-  "name": "query-string-filter",
-  "version": "0.0.2",
-  "description": "Node.js query string middleware",
+  "name": "query-strings-parser",
+  "version": "1.0.0",
+  "description": "Middleware to transform query strings in a format that is recognized by the MongoDB, MySQL and other databases...",
+  "license": "MIT",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha --opts test/mocha.opts test/**/*.spec.js",
+    "test:unit": "mocha -w --opts test/mocha.opts test/unit/*.spec.js",
+    "test:integration": "mocha -w --opts test/mocha.opts test/integration/*.spec.js",
+    "test:cov": "nyc --clean --all --reporter=html --reporter=text npm test"
+  },
   "directories": {
     "lib": "lib",
     "test": "test"
   },
-  "scripts": {
-    "test": "mocha -w --opts test/mocha.opts test/**/*.spec.js",
-    "test:unit": "mocha -w --opts test/mocha.opts test/unit/*.spec.js",
-    "test:integration": "mocha -w --opts test/mocha.opts test/integration/*.spec.js"
-  },
   "author": "Lucas Rocha <lucas.rocha@nutes.uepb.edu.br>",
-  "license": "MIT",
+  "contributors": [
+    "Douglas Rafael <douglas.rafael@nutes.uepb.edu.br>"
+  ],
+  "keywords": [
+    "middleware",
+    "query-string",
+    "parser",
+    "mongodb",
+    "express",
+    "hapi"
+  ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "node-mocks-http": "^1.7.3",
-    "supertest": "^3.3.0"
+    "nyc": "^13.1.0"
   }
 }
