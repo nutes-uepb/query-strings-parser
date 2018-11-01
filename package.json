@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --opts test/mocha.opts test/**/*.spec.js",
+    "test": "nyc --clean --all --reporter=text mocha --opts test/mocha.opts test/**/*.spec.js",
     "test:unit": "mocha -w --opts test/mocha.opts test/unit/*.spec.js",
     "test:integration": "mocha -w --opts test/mocha.opts test/integration/*.spec.js",
     "test:cov": "nyc --clean --all --reporter=html --reporter=text npm test"
