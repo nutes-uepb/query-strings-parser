@@ -1,6 +1,8 @@
+'use strict'
+
 const read = require('./lib/read')
 
-exports = function (params) {
+exports = module.exports = function (params) {
     read.set_default()
     return read.options(params)
 }
