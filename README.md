@@ -138,7 +138,7 @@ This middleware supports the queries as follow the pattern bellow:
 [downloads-image]: https://img.shields.io/npm/dt/query-strings-parser.svg
 [downloads-url]: https://npmjs.org/package/query-strings-parser
 [travis-image]: https://travis-ci.org/LIBE-NUTES/query-strings-parser.svg?branch=master
-[travis-url]: https://travis-ci.org/LIBE-NUTES/query-strings-parser.svg?branch=master
+[travis-url]: https://travis-ci.org/LIBE-NUTES/query-strings-parser
 [coverage-image]: https://coveralls.io/repos/github/LIBE-NUTES/query-strings-parser/badge.svg
 [coverage-url]: https://coveralls.io/github/LIBE-NUTES/query-strings-parser
 [known-vulnerabilities-image]: https://snyk.io/test/github/LIBE-NUTES/query-strings-parser/badge.svg?targetFile=package.json
