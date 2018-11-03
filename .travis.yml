@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-- "4.9"
-- "5.12"
 - "6.14"
 - "7.10"
 - "8.11"
@@ -17,3 +15,7 @@ before_script:
 - npm install && npm install coveralls mocha-lcov-reporter --save-dev
 script:
 - npm run test:travis
+notifications:
+  email:
+    on_success: never
+    on_failure: always

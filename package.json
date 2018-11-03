@@ -15,6 +15,10 @@
     "lib": "lib",
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LIBE-NUTES/query-strings-parser"
+  },
   "author": "Lucas Rocha <lucas.rocha@nutes.uepb.edu.br>",
   "contributors": [
     "Douglas Rafael <douglas.rafael@nutes.uepb.edu.br>"
@@ -28,7 +32,7 @@
     "hapi"
   ],
   "engines": {
-    "node": ">= 0.4.9"
+    "node": ">= 6.14"
   },
   "dependencies": {},
   "devDependencies": {

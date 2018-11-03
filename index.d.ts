@@ -20,9 +20,8 @@ declare namespace queryStringsParser {
     }
 
     export interface IPagination {
-        limit?: number
         page?: number
         skip?: number
+        limit?: number
     }
 }
-
