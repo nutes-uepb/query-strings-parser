@@ -27,9 +27,16 @@
     "middleware",
     "query-string",
     "parser",
-    "mongodb",
-    "express",
-    "hapi"
+    "stringfy",
+    "encode",
+    "decode",
+    "searchparams",
+    "url",
+    "querystring",
+    "querystrings",
+    "qs",
+    "query",
+    "string"
   ],
   "engines": {
     "node": ">= 6.14"

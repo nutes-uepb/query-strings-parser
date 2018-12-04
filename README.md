@@ -124,22 +124,22 @@ This middleware supports the queries as follow the pattern bellow:
 - Support to use the parser individually: `parserFields(string)`, `parserFilters(string)`, `parserSort(string)` and `paserPagination(string)`.
 
 [//]: # (These are reference links used in the body of this note.)
-[build-test]: <https://travis-ci.org/LIBE-NUTES/query-strings-parser>
-[test-coverage]: <https://coveralls.io/github/LIBE-NUTES/query-strings-parser?branch=master>
+[build-test]: <https://travis-ci.org/nutes-uepb/query-strings-parser>
+[test-coverage]: <https://coveralls.io/github/nutes-uepb/query-strings-parser?branch=master>
 [node.js]: <https://nodejs.org>
 [npm.js]: <https://www.npmjs.com/>
 [express]: <https://expressjs.com>
 [hapi]: <https://hapijs.com/>
 
 [license-image]: https://img.shields.io/github/license/mashape/apistatus.svg
-[license-url]: https://github.com/LIBE-NUTES/query-strings-parser/blob/master/LICENSE
+[license-url]: https://github.com/nutes-uepb/query-strings-parser/blob/master/LICENSE
 [npm-image]: https://img.shields.io/npm/v/query-strings-parser.svg
 [npm-url]: https://npmjs.org/package/query-strings-parser
 [downloads-image]: https://img.shields.io/npm/dt/query-strings-parser.svg
 [downloads-url]: https://npmjs.org/package/query-strings-parser
-[travis-image]: https://travis-ci.org/LIBE-NUTES/query-strings-parser.svg?branch=master
-[travis-url]: https://travis-ci.org/LIBE-NUTES/query-strings-parser
-[coverage-image]: https://coveralls.io/repos/github/LIBE-NUTES/query-strings-parser/badge.svg
-[coverage-url]: https://coveralls.io/github/LIBE-NUTES/query-strings-parser
-[known-vulnerabilities-image]: https://snyk.io/test/github/LIBE-NUTES/query-strings-parser/badge.svg?targetFile=package.json
-[known-vulnerabilities-url]: https://snyk.io/test/github/LIBE-NUTES/query-strings-parser?targetFile=package.json
+[travis-image]: https://travis-ci.org/nutes-uepb/query-strings-parser.svg?branch=master
+[travis-url]: https://travis-ci.org/nutes-uepb/query-strings-parser
+[coverage-image]: https://coveralls.io/repos/github/nutes-uepb/query-strings-parser/badge.svg
+[coverage-url]: https://coveralls.io/github/nutes-uepb/query-strings-parser
+[known-vulnerabilities-image]: https://snyk.io/test/github/nutes-uepb/query-strings-parser/badge.svg?targetFile=package.json
+[known-vulnerabilities-url]: https://snyk.io/test/github/nutes-uepb/query-strings-parser?targetFile=package.json
