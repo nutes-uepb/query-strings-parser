@@ -114,10 +114,10 @@ This middleware supports the queries as follow the pattern bellow:
 | Filters | `?name=elvis&age=83` | It allows limiting the number of resources requested, specifying some attributes and their expected values. To do this, simply use the attribute/property name with an equal sign and the expected value. `?name=elvis` indicates that the request should return the data that has the exact same name as Elvis, `?name=elvis,john` indicates that the name is equal to Elvis or John and `?age=18&age=25` indicates that age is equal to 18 and 25.[²](#notes) | `{ filters: { name : 'elvis', age: 83 } }` |
 
 **NOTES**
-* In this release, only the simple equality filter is supported, for example: `?name=elvis`. Soon support will be added for advanced filters like `AND`, `OR`, `<`, `<=`, `>`, `>=`, `LIKE` and `Date`.
+* In the last release, is possible filter for sub-level seaches - like `location.city=New York`, advanced filters like `AND`, `<`, `<=`, `>`, `>=`. Soon support will be added for advanced filters like `OR`,`LIKE` and `Date`.
 
 ## Future Features
-- Support for advanced filters.
+- Support for advanced filters (already implemented, for sub-levels searches - like 'jobs.employer' and comparative operators ($gt) ).
 - Support for other NoSQL banks, in addition to MongoDB.
 - ¹Support for relational databases such as MySQL, PostgreSQL and SQLite.
 - Support to use the parser by passing the query string programatically: `parser(string)`.
