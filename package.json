@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LIBE-NUTES/query-strings-parser"
+    "url": "https://github.com/nutes-uepb/query-strings-parser"
   },
   "author": "Lucas Rocha <lucas.rocha@nutes.uepb.edu.br>",
   "contributors": [

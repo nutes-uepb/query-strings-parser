@@ -155,9 +155,13 @@ describe('queryFilter()', function () {
 
         context('when query contains compose filters param', function () {
             it('should return req.query with set field params', function (done) {
-                const expect_filters = { name: 'lucas', 'school.name': 30 }
+                const expect_filters = {
+                    $and: [{ name: 'lucas' }, { name: 'douglas' }],
+                    'school.name': 30,
+                    timestamp: '2018-12-05T00:00:00.000Z'
+                }
 
-                const query = { name: 'lucas', '.school.name.': '30' }
+                const query = { name: ['lucas', 'douglas'], '.school.name.': '30', timestamp: '2018-12-05' }
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
@@ -176,9 +180,9 @@ describe('queryFilter()', function () {
 
         context('when query contains equality filters param', function () {
             it('should return req.query with set field params', function (done) {
-                const expect_filters = { name: 'lucas', age: { $gt: '30' } }
+                const expect_filters = { name: 'lucas', age: { $gt: '30' }, timestamp: { $gt: '2018-12-05T00:00:00.000Z' } }
 
-                const query = { name: 'lucas', age: 'gt:30' }
+                const query = { name: 'lucas', age: 'gt:30', timestamp: 'gt:2018-12-05' }
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
