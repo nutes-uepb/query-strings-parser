@@ -140,6 +140,6 @@ This middleware supports the queries as follow the pattern bellow:
 [travis-image]: https://travis-ci.org/nutes-uepb/query-strings-parser.svg?branch=master
 [travis-url]: https://travis-ci.org/nutes-uepb/query-strings-parser
 [coverage-image]: https://coveralls.io/repos/github/nutes-uepb/query-strings-parser/badge.svg
-[coverage-url]: https://coveralls.io/github/nutes-uepb/query-strings-parser
+[coverage-url]: https://coveralls.io/github/nutes-uepb/query-strings-parser?branch=master
 [known-vulnerabilities-image]: https://snyk.io/test/github/nutes-uepb/query-strings-parser/badge.svg?targetFile=package.json
 [known-vulnerabilities-url]: https://snyk.io/test/github/nutes-uepb/query-strings-parser?targetFile=package.json
