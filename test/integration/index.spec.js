@@ -156,16 +156,32 @@ describe('queryFilter()', function () {
         context('when query contains compose filters param', function () {
             it('should return req.query with set field params', function (done) {
                 const expect_filters = {
-                    $and: [{ name: 'lucas' }, { name: 'douglas' }],
-                    'school.name': 30,
-                    timestamp: '2018-12-05T00:00:00.000Z'
+                    '$and': [
+                        {
+                            name: { '$options': 'i', '$regex': '^lucas' }
+                        },
+                        {
+                            name: { '$options': 'i', '$regex': 'douglas&' }
+                        },
+                        {
+                            name: { '$options': 'i', '$regex': 'jorge' }
+                        }],
+                    'school.name': 'UEPB',
+                    'timestamp': '2018-12-05T00:00:00.000Z',
+                    '$or': [{ job: 'Developer' }, { job: 'Engineer' }]
                 }
 
-                const query = { name: ['lucas', 'douglas'], '.school.name.': '30', timestamp: '2018-12-05' }
+                const query = {
+                    name: ['lucas******', '******douglas', '*****jorge********'],
+                    '.school.name.': 'UEPB',
+                    timestamp: '2018-12-05',
+                    job: 'Developer,Engineer'
+                }
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
                 qs({})(req, res, function next() {
+                    console.log('req.query: ', req.query.filters);
                     expect(req.query).is.not.null
                     expect(req.query).is.not.eql({})
                     expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
@@ -180,7 +196,7 @@ describe('queryFilter()', function () {
 
         context('when query contains equality filters param', function () {
             it('should return req.query with set field params', function (done) {
-                const expect_filters = { name: 'lucas', age: { $gt: '30' }, timestamp: { $gt: '2018-12-05T00:00:00.000Z' } }
+                const expect_filters = { name: 'lucas', age: { $gt: 30 }, timestamp: { $gt: '2018-12-05T00:00:00.000Z' } }
 
                 const query = { name: 'lucas', age: 'gt:30', timestamp: 'gt:2018-12-05' }
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })

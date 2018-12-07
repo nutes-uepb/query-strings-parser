@@ -6,21 +6,21 @@ describe('QueryString: Filters', function () {
 
     context('when query filters are string/number parameters', function () {
         it('should return a JSON with filters params', function (done) {
-            verify(filter.filters({ name: 'lucas', age: 30 }, default_options))
+            verify(filter.filters({ name: 'lucas', age: '30' }, default_options))
             done()
         })
     })
 
     context('when query filters key contains blank space', function () {
         it('should return a JSON with filters params, ignoring blank spaces', function (done) {
-            verify(filter.filters({ ' na  me   ': 'lucas', age: 30 }, default_options))
+            verify(filter.filters({ ' na  me   ': 'lucas', age: '30' }, default_options))
             done()
         })
     })
 
     context('when query filters key contains special characteres', function () {
         it('should return a JSON with filters params, ignoring the special characteres', function (done) {
-            verify(filter.filters({ '#(@@$na%me!?': 'lucas', age: 30 }, default_options))
+            verify(filter.filters({ '#(@@$na%me!?': 'lucas', age: '30' }, default_options))
             done()
         })
     })
