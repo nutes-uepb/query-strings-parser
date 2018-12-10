@@ -220,8 +220,8 @@ describe('queryFilter()', function () {
                 const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
                 const expect_filters = {
                     $and: [
-                        { created_at: { $gte: '2018-12-05T00:00:00.000Z' } },
-                        { created_at: { $lt: new Date(today).toISOString() } }
+                        { created_at: { $lt: new Date(today).toISOString() } },
+                        { created_at: { $gte: '2018-12-05T00:00:00.000Z' } }
                     ]
                 }
 
@@ -246,8 +246,8 @@ describe('queryFilter()', function () {
 
             const expect_filters = {
                 $and: [
-                    { created_at: { $gte: '2018-12-01T00:00:00.000Z' } },
-                    { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }
+                    { created_at: { $lt: '2018-12-11T00:00:00.000Z' } },
+                    { created_at: { $gte: '2018-12-01T00:00:00.000Z' } }
                 ]
             }
 
