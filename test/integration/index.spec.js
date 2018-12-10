@@ -181,7 +181,6 @@ describe('queryFilter()', function () {
                 const res = httpMocks.createResponse()
 
                 qs({})(req, res, function next() {
-                    console.log('req.query: ', req.query.filters);
                     expect(req.query).is.not.null
                     expect(req.query).is.not.eql({})
                     expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
