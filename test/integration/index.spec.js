@@ -266,6 +266,36 @@ describe('queryFilter()', function () {
             done()
         })
 
+        it('should return req.query with set period and date_start param', function (done) {
+            const now = new Date()
+            const twoDaysBefore = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 2)
+
+            const today = dateToString(now)
+            const beforeToday = dateToString(twoDaysBefore)
+
+            const expect_filters = {
+                $and: [
+                    { created_at: { $lt: new Date(today).toISOString() } },
+                    { created_at: { $gte: new Date(beforeToday).toISOString() } }
+                ]
+            }
+            const query = { period: '1d', date_end: dateToString(new Date()) }
+            const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
+            const res = httpMocks.createResponse()
+
+            qs({})(req, res, function next() {
+                expect(req.query).is.not.null
+                expect(req.query).is.not.eql({})
+                expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
+                expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
+                expect(req.query.sort).to.eql(default_options.default.sort)
+                expect(req.query.fields).to.eql(default_options.default.fields)
+                expect(req.query.filters).to.eql(expect_filters)
+            })
+            done()
+
+        })
+
         it('should return req.query with set period as day params', function (done) {
             const now = new Date();
             const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
