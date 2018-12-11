@@ -267,19 +267,13 @@ describe('queryFilter()', function () {
         })
 
         it('should return req.query with set period and date_start param', function (done) {
-            const now = new Date()
-            const twoDaysBefore = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 2)
-
-            const today = dateToString(now)
-            const beforeToday = dateToString(twoDaysBefore)
-
             const expect_filters = {
                 $and: [
-                    { created_at: { $lt: new Date(today).toISOString() } },
-                    { created_at: { $gte: new Date(beforeToday).toISOString() } }
+                    { created_at: { $lt: '2018-12-11T00:00:00.000Z' } },
+                    { created_at: { $gte: '2018-11-10T00:00:00.000Z' } }
                 ]
             }
-            const query = { period: '1d', date_end: dateToString(new Date()) }
+            const query = { period: '1m', date_end: '2018-12-11' }
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
