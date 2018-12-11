@@ -266,6 +266,30 @@ describe('queryFilter()', function () {
             done()
         })
 
+        it('should return req.query with set period and date_start param', function (done) {
+            const expect_filters = {
+                $and: [
+                    { created_at: { $lt: '2018-12-10T00:00:00.000Z' } },
+                    { created_at: { $gte: '2018-12-07T00:00:00.000Z' } }
+                ]
+            }
+            const query = { period: '2d', date_end: '2018-12-10' }
+            const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
+            const res = httpMocks.createResponse()
+
+            qs({})(req, res, function next() {
+                expect(req.query).is.not.null
+                expect(req.query).is.not.eql({})
+                expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
+                expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
+                expect(req.query.sort).to.eql(default_options.default.sort)
+                expect(req.query.fields).to.eql(default_options.default.fields)
+                expect(req.query.filters).to.eql(expect_filters)
+            })
+            done()
+
+        })
+
         it('should return req.query with set period as day params', function (done) {
             const now = new Date();
             const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
@@ -294,14 +318,16 @@ describe('queryFilter()', function () {
 
         it('should return req.query with set period as week params', function (done) {
 
+            const now = new Date();
+            const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
             const expect_filters = {
                 $and: [
-                    { created_at: { $lt: '2018-12-11T00:00:00.000Z' } },
-                    { created_at: { $gte: '2018-11-26T00:00:00.000Z' } }
+                    { created_at: { $lt: new Date(today).toISOString() } },
+                    { created_at: { $gte: '2018-11-27T00:00:00.000Z' } }
                 ]
             }
 
-            const query = { period: '2w', date_end: '2018-12-11' }
+            const query = { period: '2w' }
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
@@ -319,14 +345,16 @@ describe('queryFilter()', function () {
 
         it('should return req.query with set period as month params', function (done) {
 
+            const now = new Date();
+            const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
             const expect_filters = {
                 $and: [
-                    { created_at: { $lt: '2018-12-10T00:00:00.000Z' } },
-                    { created_at: { $gte: '2018-11-09T00:00:00.000Z' } }
+                    { created_at: { $lt: new Date(today).toISOString() } },
+                    { created_at: { $gte: '2018-11-11T00:00:00.000Z' } }
                 ]
             }
 
-            const query = { period: '1m', date_end: '2018-12-10' }
+            const query = { period: '1m' }
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
@@ -344,14 +372,16 @@ describe('queryFilter()', function () {
 
         it('should return req.query with set period as year params', function (done) {
 
+            const now = new Date();
+            const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
             const expect_filters = {
                 $and: [
-                    { created_at: { $lt: '2018-12-10T00:00:00.000Z' } },
-                    { created_at: { $gte: '2017-11-09T00:00:00.000Z' } }
+                    { created_at: { $lt: new Date(today).toISOString() } },
+                    { created_at: { $gte: '2017-11-11T00:00:00.000Z' } }
                 ]
             }
 
-            const query = { period: '1y', date_end: '2018-12-10' }
+            const query = { period: '1y' }
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
