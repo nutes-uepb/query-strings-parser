@@ -293,10 +293,11 @@ describe('queryFilter()', function () {
         it('should return req.query with set period as day params', function (done) {
             const now = new Date();
             const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+            const beforeToday = dateToString(new Date(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() - 10}`))
             const expect_filters = {
                 $and: [
                     { created_at: { $lt: new Date(today).toISOString() } },
-                    { created_at: { $gte: '2018-12-01T00:00:00.000Z' } }
+                    { created_at: { $gte: new Date(beforeToday).toISOString() } }
                 ]
             }
 
@@ -320,10 +321,11 @@ describe('queryFilter()', function () {
 
             const now = new Date();
             const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+            const beforeToday = dateToString(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 14))
             const expect_filters = {
                 $and: [
                     { created_at: { $lt: new Date(today).toISOString() } },
-                    { created_at: { $gte: '2018-11-27T00:00:00.000Z' } }
+                    { created_at: { $gte: new Date(beforeToday).toISOString() } }
                 ]
             }
 
@@ -347,10 +349,11 @@ describe('queryFilter()', function () {
 
             const now = new Date();
             const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+            const beforeToday = dateToString(new Date(now.getFullYear(), (now.getMonth() - 1), now.getDate()))
             const expect_filters = {
                 $and: [
                     { created_at: { $lt: new Date(today).toISOString() } },
-                    { created_at: { $gte: '2018-11-11T00:00:00.000Z' } }
+                    { created_at: { $gte: new Date(beforeToday).toISOString() } }
                 ]
             }
 
@@ -374,10 +377,11 @@ describe('queryFilter()', function () {
 
             const now = new Date();
             const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+            const beforeToday = dateToString(new Date(now.getFullYear() - 1, now.getMonth() - 1, now.getDate()))
             const expect_filters = {
                 $and: [
                     { created_at: { $lt: new Date(today).toISOString() } },
-                    { created_at: { $gte: '2017-11-11T00:00:00.000Z' } }
+                    { created_at: { $gte: new Date(beforeToday).toISOString() } }
                 ]
             }
 
