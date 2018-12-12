@@ -50,7 +50,7 @@ describe('QueryString: Ordination', function () {
 
     context('when use custom params without query', function () {
         it('should return a JSON with custom params', function () {
-            var custom_options = { default: { sort: { created_at: "asc" }}}
+            var custom_options = { default: { sort: { created_at: 'asc' }}}
             var result = ordination.sort({}, custom_options)
             expect(result).is.not.null
             expect(result).to.have.property('created_at')

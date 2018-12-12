@@ -234,13 +234,15 @@ describe('queryFilter()', function () {
         })
 
         it('should return req.query with set period and date_end param', function (done) {
+            const now = new Date();
+            const today = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
             const expect_filters = {
                 $and: [
-                    { created_at: { $lt: '2018-12-11T00:00:00.000Z' } },
-                    { created_at: { $gte: '2018-11-10T00:00:00.000Z' } }
+                    { created_at: { $lt: new Date(today).toISOString() } },
+                    { created_at: { $gte: new Date(today).toISOString() } }
                 ]
             }
-            const query = { period: '30d', date_end: '2018-12-11' }
+            const query = { period: '0d', date_end: today }
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
