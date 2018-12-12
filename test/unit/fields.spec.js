@@ -37,13 +37,13 @@ describe('QueryString: Fields', function () {
 
     context('when there are special characters in query fields', function () {
         it('should return a JSON with field params, ignoring the special characteres', function (done) {
-            var query = { fields: ' ,,,   ^ & * ( ´) @!n@a"m "e,$%ag" e",created  _a t \'\ ' }
+            var query = { fields: ' ,,,   ^ & * ( ´) @!n@a"m "e,$%ag" e",created  _a t  ' }
             verify(fields.fields(query, default_options))
             done()
 
         })
     })
-    
+
     context('when use the default options without query', function () {
         it('should return a JSON with default field params', function (done) {
             var result = fields.fields({}, default_options)
