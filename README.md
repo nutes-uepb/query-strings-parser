@@ -19,7 +19,7 @@ const express = require('express')
 const qs = require('query-strings-parser')
 const app = express()
 
-app.use(qs()) // middlmiddleware query-strings-parser
+app.use(qs()) // middleware query-strings-parser
 
 app.listen(3000, (req, res) => {
     console.log('app listening on port 3000')
@@ -113,11 +113,10 @@ This middleware supports the queries as follow the pattern bellow:
 | Ordenation | `?sort=name,-age` | Allows you to apply sort rules. To do this, simply provide the name of the attributes/properties that will be used to sort the result of the query separated by commas. For ascending _(ascending)_ use before the attribute name the `+` character and for descending _(descending)_ use the `-` character. By default the order is ascending, so the `+` character is optional, just inform the attribute name. | `{ sort: { name: 'asc', age: 'desc' }` }|
 | Filters | `?name=elvis&age=83` | It allows limiting the number of resources requested, specifying some attributes and their expected values. To do this, simply use the attribute/property name with an equal sign and the expected value. `?name=elvis` indicates that the request should return the data that has the exact same name as Elvis, `?name=elvis,john` indicates that the name is equal to Elvis or John and `?age=18&age=25` indicates that age is equal to 18 and 25.[²](#notes) | `{ filters: { name : 'elvis', age: 83 } }` |
 
-**NOTES**
-* In the last release, is possible filter for sub-level seaches - like `location.city=New York`, advanced filters like `AND`, `<`, `<=`, `>`, `>=`. Soon support will be added for advanced filters like `OR`,`LIKE` and `Date`.
 
+**NOTES**
+* In the last release, is possible filter for sub-level seaches - like `location.city=New York`, advanced filters like `AND`, `<`, `<=`, `>`, `>=`,`OR`,`LIKE` and `Date`.
 ## Future Features
-- Support for advanced filters (already implemented, for sub-levels searches - like 'jobs.employer' and comparative operators ($gt) ).
 - Support for other NoSQL banks, in addition to MongoDB.
 - ¹Support for relational databases such as MySQL, PostgreSQL and SQLite.
 - Support to use the parser by passing the query string programatically: `parser(string)`.
