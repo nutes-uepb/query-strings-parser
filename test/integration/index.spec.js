@@ -14,13 +14,7 @@ describe('queryFilter()', function () {
                 const res = httpMocks.createResponse()
 
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, default_options)
                 })
                 done()
             })
@@ -34,14 +28,12 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.skip = expect_pagination.skip
+
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(expect_pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -55,14 +47,12 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.skip = expect_pagination.skip
+
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(expect_pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -76,14 +66,12 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.skip = expect_pagination.skip
+
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(expect_pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -97,15 +85,11 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.sort = expect_sort
 
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                    expect(req.query.sort).to.eql(expect_sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -119,14 +103,11 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.fields = expect_fields
+
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(expect_fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -140,14 +121,12 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.filters = expect_filters
+
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(expect_filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -180,14 +159,11 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.filters = expect_filters
+
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(expect_filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -201,14 +177,11 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.filters = expect_filters
+
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(expect_filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -229,14 +202,11 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.filters = expect_filters
+
                 qs({})(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(expect_filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -254,37 +224,31 @@ describe('queryFilter()', function () {
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
+            const options = JSON.parse(JSON.stringify(default_options))
+            options.default.filters = expect_filters
+
             qs({})(req, res, function next() {
-                expect(req.query).is.not.null
-                expect(req.query).is.not.eql({})
-                expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                expect(req.query.sort).to.eql(default_options.default.sort)
-                expect(req.query.fields).to.eql(default_options.default.fields)
-                expect(req.query.filters).to.eql(expect_filters)
+                validate(req, options)
             })
             done()
         })
 
-        it('should return req.query with set period and date_start param', function (done) {
+        it('should return req.query with set period and date_end param', function (done) {
             const expect_filters = {
                 $and: [
                     { created_at: { $lt: '2018-12-11T00:00:00.000Z' } },
                     { created_at: { $gte: '2018-11-10T00:00:00.000Z' } }
                 ]
             }
-            const query = { period: '1m', date_end: '2018-12-11' }
+            const query = { period: '30d', date_end: '2018-12-11' }
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
+            const options = JSON.parse(JSON.stringify(default_options))
+            options.default.filters = expect_filters
+
             qs({})(req, res, function next() {
-                expect(req.query).is.not.null
-                expect(req.query).is.not.eql({})
-                expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                expect(req.query.sort).to.eql(default_options.default.sort)
-                expect(req.query.fields).to.eql(default_options.default.fields)
-                expect(req.query.filters).to.eql(expect_filters)
+                validate(req, options)
             })
             done()
 
@@ -305,14 +269,11 @@ describe('queryFilter()', function () {
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
+            const options = JSON.parse(JSON.stringify(default_options))
+            options.default.filters = expect_filters
+
             qs({})(req, res, function next() {
-                expect(req.query).is.not.null
-                expect(req.query).is.not.eql({})
-                expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                expect(req.query.sort).to.eql(default_options.default.sort)
-                expect(req.query.fields).to.eql(default_options.default.fields)
-                expect(req.query.filters).to.eql(expect_filters)
+                validate(req, options)
             })
             done()
         })
@@ -333,14 +294,11 @@ describe('queryFilter()', function () {
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
+            const options = JSON.parse(JSON.stringify(default_options))
+            options.default.filters = expect_filters
+
             qs({})(req, res, function next() {
-                expect(req.query).is.not.null
-                expect(req.query).is.not.eql({})
-                expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                expect(req.query.sort).to.eql(default_options.default.sort)
-                expect(req.query.fields).to.eql(default_options.default.fields)
-                expect(req.query.filters).to.eql(expect_filters)
+                validate(req, options)
             })
             done()
         })
@@ -361,14 +319,11 @@ describe('queryFilter()', function () {
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
+            const options = JSON.parse(JSON.stringify(default_options))
+            options.default.filters = expect_filters
+
             qs({})(req, res, function next() {
-                expect(req.query).is.not.null
-                expect(req.query).is.not.eql({})
-                expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                expect(req.query.sort).to.eql(default_options.default.sort)
-                expect(req.query.fields).to.eql(default_options.default.fields)
-                expect(req.query.filters).to.eql(expect_filters)
+                validate(req, options)
             })
             done()
         })
@@ -389,14 +344,11 @@ describe('queryFilter()', function () {
             const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
             const res = httpMocks.createResponse()
 
+            const options = JSON.parse(JSON.stringify(default_options))
+            options.default.filters = expect_filters
+
             qs({})(req, res, function next() {
-                expect(req.query).is.not.null
-                expect(req.query).is.not.eql({})
-                expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                expect(req.query.sort).to.eql(default_options.default.sort)
-                expect(req.query.fields).to.eql(default_options.default.fields)
-                expect(req.query.filters).to.eql(expect_filters)
+                validate(req, options)
             })
             done()
         })
@@ -419,14 +371,13 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.page = expect_pagination.page
+                delete options.default.pagination.skip
+
                 qs(custom_options)(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.page).to.eql(expect_pagination.page)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -453,14 +404,13 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.skip = expect_pagination.skip
+                delete options.default.pagination.page
+
                 qs(custom_options)(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(expect_pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -486,14 +436,13 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.page = expect_pagination.page
+                delete options.default.pagination.skip
+
                 qs(custom_options)(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.page).to.eql(expect_pagination.page)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -519,14 +468,13 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.page = expect_pagination.page
+                delete options.default.pagination.skip
+
                 qs(custom_options)(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.page).to.eql(expect_pagination.page)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -554,14 +502,13 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.skip = expect_pagination.skip
+                delete options.default.pagination.page
+
                 qs(custom_options)(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(expect_pagination.skip)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -587,14 +534,13 @@ describe('queryFilter()', function () {
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.pagination.limit = expect_pagination.limit
+                options.default.pagination.page = expect_pagination.page
+                delete options.default.pagination.skip
+
                 qs(custom_options)(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(expect_pagination.limit)
-                    expect(req.query.pagination.page).to.eql(expect_pagination.page)
-                    expect(req.query.sort).to.eql(default_options.default.sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -618,14 +564,11 @@ describe('queryFilter()', function () {
                 var req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 var res = httpMocks.createResponse()
 
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.sort = expect_sort
+
                 qs(custom_options)(req, res, function next() {
-                    expect(req.query).is.not.null
-                    expect(req.query).is.not.eql({})
-                    expect(req.query.pagination.limit).to.eql(default_options.default.pagination.limit)
-                    expect(req.query.pagination.skip).to.eql(default_options.default.pagination.skip)
-                    expect(req.query.sort).to.eql(expect_sort)
-                    expect(req.query.fields).to.eql(default_options.default.fields)
-                    expect(req.query.filters).to.eql(default_options.default.filters)
+                    validate(req, options)
                 })
                 done()
             })
@@ -639,4 +582,14 @@ function dateToString(date) {
 }
 function formatDay(day) {
     return day < 10 ? '0'.concat(day) : day
+}
+
+function validate(req, options) {
+    expect(req.query).is.not.null
+    expect(req.query).is.not.eql({})
+    expect(req.query.pagination.limit).to.eql(options.default.pagination.limit)
+    expect(req.query.pagination.skip).to.eql(options.default.pagination.skip)
+    expect(req.query.sort).to.eql(options.default.sort)
+    expect(req.query.fields).to.eql(options.default.fields)
+    expect(req.query.filters).to.eql(options.default.filters)
 }
