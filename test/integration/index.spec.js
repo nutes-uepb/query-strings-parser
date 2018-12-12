@@ -235,7 +235,7 @@ describe('queryFilter()', function () {
 
         it('should return req.query with set period and date_end param', function (done) {
             const now = new Date();
-            const today = dateToString(new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1))
+            const today = dateToString(new Date(now.getFullYear(), now.getMonth(), now.getDate()))
             const beforeToday = dateToString(new Date(now.getFullYear(), now.getMonth(), now.getDate()))
 
             const expect_filters = {
