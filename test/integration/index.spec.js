@@ -238,7 +238,7 @@ describe('queryFilter()', function () {
                 options.default.filters = expect_filters
 
                 qs({})(req, res, function next() {
-                    validate(req, options)
+                    validateFilterWithDate(req, options)
                 })
                 done()
             })
