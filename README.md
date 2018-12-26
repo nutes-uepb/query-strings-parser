@@ -174,11 +174,9 @@ This middleware supports the queries as follow the pattern bellow:
 
 **NOTES**
 * In the last release, is possible filter for sub-level seaches - like `location.city=New York`, advanced filters like `AND`, `<`, `<=`, `>`, `>=`,`OR`,`LIKE` and `Date`.
+* The middleware has the following reserved words: `skip`, `page`, `limit`, `start_at`, and `end_at`. Therefore, the use of these words in querystrings outside the context of the middleware may generate a different operation than expected.
 ## Future Features
-- Support for other NoSQL banks, in addition to MongoDB.
 - ¹Support for relational databases such as MySQL, PostgreSQL and SQLite.
-- Support to use the parser by passing the query string programatically: `parser(string)`.
-- Support to use the parser individually: `parserFields(string)`, `parserFilters(string)`, `parserSort(string)` and `paserPagination(string)`.
 
 [//]: # (These are reference links used in the body of this note.)
 [build-test]: <https://travis-ci.org/nutes-uepb/query-strings-parser>
