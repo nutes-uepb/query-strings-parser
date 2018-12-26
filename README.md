@@ -137,15 +137,15 @@ app.use(qs({
 #### 3.5 Data
 | Query | Description | Result |
 | ------ | ------ | ------ |
-| `?date_start=2018-11-10&date_end=2018-12-10` | Search where the user wants results between 2018-12-10 and 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-10T00:00:00.000Z' } }, { created_at: { $gte: '2018-11-10T00:00:00.000Z' } } ] } }` |
-| `?date_start=2018-12-10` | Search where the user wants results between 2018-12-10 and the current date. In this example, the current day is: 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-12-10T00:00:00.000Z' } } ] } }` |
-| `?date_end=2018-12-11&period=10d` | Search where the user wants results from 10 days before 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-11-30T00:00:00.000Z' } } ] } }` | 
+| `?start_at=2018-11-10&end_at=2018-12-10` | Search where the user wants results between 2018-12-10 and 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-10T00:00:00.000Z' } }, { created_at: { $gte: '2018-11-10T00:00:00.000Z' } } ] } }` |
+| `?start_at=2018-12-10` | Search where the user wants results between 2018-12-10 and the current date. In this example, the current day is: 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-12-10T00:00:00.000Z' } } ] } }` |
+| `?end_at=2018-12-11&period=10d` | Search where the user wants results from 10 days before 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-11-30T00:00:00.000Z' } } ] } }` | 
 | `?period=10d` | Search where the user wants results from 10 days before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-12-02T00:00:00.000Z' } } ] } }` | 
-| `?date_end=2018-12-11&period=8w` | Search where the user wants results from 8 weeks before 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-10-15T00:00:00.000Z' } } ] } }` | 
+| `?end_at=2018-12-11&period=8w` | Search where the user wants results from 8 weeks before 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-10-15T00:00:00.000Z' } } ] } }` | 
 | `?period=8w` | Search where the user wants results from 8 weeks before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-10-17T00:00:00.000Z' } } ] } }` | 
-| `?date_end=2018-12-11&period=6m` | Search where the user wants results from 6 months before 2018-12-11. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-06-10T03:00:00.000Z' } } ] } }` | 
+| `?end_at=2018-12-11&period=6m` | Search where the user wants results from 6 months before 2018-12-11. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-06-10T03:00:00.000Z' } } ] } }` | 
 | `?period=6m` | Search where the user wants results from 6 months before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-06-12T03:00:00.000Z' } } ] } }` | 
-| `?date_end=2018-12-11&period=4y` | Search where the user wants results from 4 years before 2018-12-11. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2014-12-10T00:00:00.000Z' } } ] } }` | 
+| `?end_at=2018-12-11&period=4y` | Search where the user wants results from 4 years before 2018-12-11. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2014-12-10T00:00:00.000Z' } } ] } }` | 
 | `?period=4y` | Search where the user wants results from 4 years before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2014-12-12T00:00:00.000Z' } } ] } }` | 
 
 #### 3.6 Search
