@@ -216,6 +216,26 @@ describe('queryFilter()', function () {
         })
 
         context('when query contains date filters param', function () {
+            it('should return req.query with set start_at params as today', function (done) {
+                const expect_filters = {
+                    $and: [
+                        { created_at: { $lt: new Date().toISOString() } },
+                        { created_at: { $gte: new Date().toISOString() } }
+                    ]
+                }
+
+                const query = { start_at: 'today' }
+                const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
+                const res = httpMocks.createResponse()
+
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.filters = expect_filters
+
+                qs({})(req, res, function next() {
+                    validateFilterWithDate(req, options)
+                })
+                done()
+            })
             it('should return req.query with set start_at params as date', function (done) {
                 const expect_filters = {
                     $and: [
@@ -300,14 +320,14 @@ describe('queryFilter()', function () {
                 done()
             })
 
-            it('should return req.query with set period and end_at param', function (done) {
+            it('should return req.query with set period and end_at param as dateTime', function (done) {
                 const expect_filters = {
                     $and: [
                         { created_at: { $lt: new Date('2018-12-09').toISOString() } },
                         { created_at: { $gte: new Date('2018-11-10').toISOString() } }
                     ]
                 }
-                const query = { period: '1m', end_at: '2018-12-09' }
+                const query = { period: '1m', end_at: '2018-12-09T00:00:00' }
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
@@ -320,7 +340,7 @@ describe('queryFilter()', function () {
                 done()
             })
 
-            it('should return req.query with set period as day params', function (done) {
+            it('should return req.query with set period as day params and end_at as today', function (done) {
                 const now = new Date()
                 const today = dateToString(new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1))
                 const beforeToday = dateToString(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 9))
@@ -331,7 +351,7 @@ describe('queryFilter()', function () {
                     ]
                 }
 
-                const query = { period: '10d' }
+                const query = { period: '10d', end_at: 'today' }
                 const req = httpMocks.createRequest({ method: 'GET', url: '/', query: query })
                 const res = httpMocks.createResponse()
 
