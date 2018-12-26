@@ -10,6 +10,7 @@ declare namespace queryStringsParser {
         default?: IDefault
         use_page?: boolean
         client_db?: string
+        date_field?: string
     }
 
     export interface IDefault {
