@@ -151,9 +151,9 @@ app.use(qs({
 #### 3.6 Search
 | Query | Description | Result |
 | ------ | ------ | ------ |
-| `?name=elvis*`| Search where the user want results that the name starts with value 'elvis'. | `{ filters:  { name: { '$options': 'i', '$regex': '^lucas' } } ` |
-| `?name=*elvis` | Search where the user want results that the name ends with the value 'elvis'. | `{ filters:  { name: { '$options': 'i', '$regex': 'lucas&' } } ` |
-| `?name=*elvis*` | Search where the user wants results for name that contains the value 'elvis' in any position. | `{ filters:  { name: { '$options': 'i', '$regex': 'lucas' } } ` |
+| `?name=elvis*`| Search where the user want results that the name starts with value 'elvis'. | `{ filters:  { name: { '$options': 'i', '$regex': '^elvis' } } ` |
+| `?name=*elvis` | Search where the user want results that the name ends with the value 'elvis'. | `{ filters:  { name: { '$options': 'i', '$regex': 'elvis&' } } ` |
+| `?name=*elvis*` | Search where the user wants results for name that contains the value 'elvis' in any position. | `{ filters:  { name: { '$options': 'i', '$regex': 'elvis' } } ` |
 
 **NOTES** :
 * Default values are used only when they are not passed in the query string. For example, if you set the default value `?sort=-age` _(age in descending order)_ and your client makes a request with `?sort=name` _(name in ascending order)_, you will get in req.query the value `{ sort: { name: 'asc' } }`, since the values passed by the client will always have preference.
