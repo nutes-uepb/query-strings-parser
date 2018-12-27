@@ -240,7 +240,7 @@ describe('queryFilter()', function () {
                 const expect_filters = {
                     $and: [
                         { created_at: { $lt: new Date().toISOString() } },
-                        { created_at: { $gte: '2018-12-05T00:00:00.000Z' } }
+                        { created_at: { $gte: '2018-12-05T00:00:00' } }
                     ]
                 }
 
@@ -261,7 +261,7 @@ describe('queryFilter()', function () {
                 const expect_filters = {
                     $and: [
                         { created_at: { $lt: new Date().toISOString() } },
-                        { created_at: { $gte: '2018-12-05T00:00:00.000Z' } }
+                        { created_at: { $gte: '2018-12-05T00:00:00' } }
                     ]
                 }
 
@@ -282,8 +282,8 @@ describe('queryFilter()', function () {
 
                 const expect_filters = {
                     $and: [
-                        { created_at: { $lt: '2018-12-11T00:00:00.000Z' } },
-                        { created_at: { $gte: '2018-12-01T00:00:00.000Z' } }]
+                        { created_at: { $lt: '2018-12-11T00:00:00' } },
+                        { created_at: { $gte: '2018-12-01T00:00:00' } }]
                 }
 
                 const query = { start_at: '2018-12-01', end_at: '2018-12-11' }
@@ -303,8 +303,8 @@ describe('queryFilter()', function () {
 
                 const expect_filters = {
                     $and: [
-                        { created_at: { $lt: '2018-12-11T00:00:00.000Z' } },
-                        { created_at: { $gte: '2018-12-01T00:00:00.000Z' } }]
+                        { created_at: { $lt: '2018-12-11T00:00:00' } },
+                        { created_at: { $gte: '2018-12-01T00:00:00' } }]
                 }
 
                 const query = { start_at: '2018-12-01T00:00:00', end_at: '2018-12-11T00:00:00' }

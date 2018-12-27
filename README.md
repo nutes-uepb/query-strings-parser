@@ -137,19 +137,23 @@ app.use(qs({
 #### 3.5 Data
 | Query | Description | Result |
 | ------ | ------ | ------ |
-| `?start_at=2018-11-10&end_at=2018-12-10` | Search where the user wants results between 2018-12-10 and 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-10T00:00:00.000Z' } }, { created_at: { $gte: '2018-11-10T00:00:00.000Z' } } ] } }` |
-| `?start_at=2018-12-10` | Search where the user wants results between 2018-12-10 and the current date. In this example, the current day is: 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-12-10T00:00:00.000Z' } } ] } }` |
-| `?end_at=2018-12-11&period=10d` | Search where the user wants results from 10 days before 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-11-30T00:00:00.000Z' } } ] } }` | 
-| `?period=10d` | Search where the user wants results from 10 days before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-12-02T00:00:00.000Z' } } ] } }` | 
-| `?end_at=2018-12-11&period=8w` | Search where the user wants results from 8 weeks before 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-10-15T00:00:00.000Z' } } ] } }` | 
-| `?period=8w` | Search where the user wants results from 8 weeks before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-10-17T00:00:00.000Z' } } ] } }` | 
-| `?end_at=2018-12-11&period=6m` | Search where the user wants results from 6 months before 2018-12-11. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2018-06-10T03:00:00.000Z' } } ] } }` | 
-| `?period=6m` | Search where the user wants results from 6 months before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2018-06-12T03:00:00.000Z' } } ] } }` | 
-| `?end_at=2018-12-11&period=4y` | Search where the user wants results from 4 years before 2018-12-11. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T00:00:00.000Z' } }, { created_at: { $gte: '2014-12-10T00:00:00.000Z' } } ] } }` | 
-| `?period=4y` | Search where the user wants results from 4 years before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T00:00:00.000Z' } }, { created_at: { $gte: '2014-12-12T00:00:00.000Z' } } ] } }` | 
+| `?start_at=2018-11-10&end_at=2018-12-10` | Search where the user wants results between 2018-12-10 and 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-10T23:59:59' } }, { created_at: { $gte: '2018-11-10T00:00:00' } } ] } }` |
+| `?start_at=2018-12-10` | Search where the user wants results between 2018-12-10 and the current date. In this example, the current day is: 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T23:59:59' } }, { created_at: { $gte: '2018-12-10T00:00:00' } } ] } }` |
+| `?end_at=2018-12-11&period=10d` | Search where the user wants results from 10 days before 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T23:59:59' } }, { created_at: { $gte: '2018-11-30T00:00:00' } } ] } }` | 
+| `?period=10d` | Search where the user wants results from 10 days before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T23:59:59' } }, { created_at: { $gte: '2018-12-02T00:00:00' } } ] } }` | 
+| `?end_at=2018-12-11&period=8w` | Search where the user wants results from 8 weeks before 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T23:59:59' } }, { created_at: { $gte: '2018-10-15T00:00:00' } } ] } }` | 
+| `?period=8w` | Search where the user wants results from 8 weeks before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T23:59:59' } }, { created_at: { $gte: '2018-10-17T00:00:00' } } ] } }` | 
+| `?end_at=2018-12-11&period=6m` | Search where the user wants results from 6 months before 2018-12-11. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T23:59:59' } }, { created_at: { $gte: '2018-06-10T00:00:00' } } ] } }` | 
+| `?period=6m` | Search where the user wants results from 6 months before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T23:59:59' } }, { created_at: { $gte: '2018-06-12T00:00:00' } } ] } }` | 
+| `?end_at=2018-12-11&period=4y` | Search where the user wants results from 4 years before 2018-12-11. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-11T23:59:59' } }, { created_at: { $gte: '2014-12-10T00:00:00' } } ] } }` | 
+| `?period=4y` | Search where the user wants results from 4 years before the current date. In this example, the current day is: 2018-12-12. |  `{ filters: { $and: [ { created_at: { $lt: '2018-12-13T23:59:59' } }, { created_at: { $gte: '2014-12-12T00:00:00' } } ] } }` | 
 
 #### 3.6 Search
-// TODO
+| Query | Description | Result |
+| ------ | ------ | ------ |
+| `?name=elvis*`| Search where the user want results that the name starts with value 'elvis'. | `{ filters:  { name: { '$options': 'i', '$regex': '^lucas' } } ` |
+| `?name=*elvis` | Search where the user want results that the name ends with the value 'elvis'. | `{ filters:  { name: { '$options': 'i', '$regex': 'lucas&' } } ` |
+| `?name=*elvis*` | Search where the user wants results for name that contains the value 'elvis' in any position. | `{ filters:  { name: { '$options': 'i', '$regex': 'lucas' } } ` |
 
 **NOTES** :
 * Default values are used only when they are not passed in the query string. For example, if you set the default value `?sort=-age` _(age in descending order)_ and your client makes a request with `?sort=name` _(name in ascending order)_, you will get in req.query the value `{ sort: { name: 'asc' } }`, since the values passed by the client will always have preference.
