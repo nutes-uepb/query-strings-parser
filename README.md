@@ -99,7 +99,7 @@ app.use(qs({
  */
 ```
 
-### 3. Most Usage In Queries
+### 3. Supported Query Strings
 #### 3.1 Partial Answers
 | Query | Description | Result |
 | ------ | ------ | ------ |
@@ -163,22 +163,6 @@ app.use(qs({
 * The **date_field** parameter in the options is used in cases where you want to use filters with Date. If this value is not specified in the middleware configuration options, its default value will be 'created_at'.
 * The configurations that you don't set in middleware options it will be the default settings.
 
-### Query Support
-
-This middleware supports the queries as follow the pattern bellow:
-
-| Operation | Query | Description | Result |
-| ------ | ------ | ------ | ------ |
-| Partial Responses | `?fields=name,age` | Allows you to retrieve only the information you want. To do this, simply provide the name of the attributes/properties separated by commas, `?fields=name,age` indicates that only the name and age should be listed in the result of the request. | `{ fields: { name: 1, age: 1 } }` |
-| Pagination with skip  | `?skip=0&limit=100` | Determines how many items to skip and the maximum number that the request should return. | `{ pagination: { skip: 0, limit: 100 } }` |
-| Pagination with page | `?page=2&limit=100` | Determines the page number and the maximum number of items the request should return. | { `pagination: { page: 2, limit: 100 } }` |
-| Ordenation | `?sort=name,-age` | Allows you to apply sort rules. To do this, simply provide the name of the attributes/properties that will be used to sort the result of the query separated by commas. For ascending _(ascending)_ use before the attribute name the `+` character and for descending _(descending)_ use the `-` character. By default the order is ascending, so the `+` character is optional, just inform the attribute name. | `{ sort: { name: 'asc', age: 'desc' }` }|
-| Filters | `?name=elvis&age=83` | It allows limiting the number of resources requested, specifying some attributes and their expected values. To do this, simply use the attribute/property name with an equal sign and the expected value. `?name=elvis` indicates that the request should return the data that has the exact same name as Elvis, `?name=elvis,john` indicates that the name is equal to Elvis or John and `?age=18&age=25` indicates that age is equal to 18 and 25.[²](#notes) | `{ filters: { name : 'elvis', age: 83 } }` |
-
-
-**NOTES**
-* In the last release, is possible filter for sub-level seaches - like `location.city=New York`, advanced filters like `AND`, `<`, `<=`, `>`, `>=`,`OR`,`LIKE` and `Date`.
-* The middleware has the following reserved words: `skip`, `page`, `limit`, `start_at`, and `end_at`. Therefore, the use of these words in querystrings outside the context of the middleware may generate a different operation than expected.
 ## Future Features
 - ¹Support for relational databases such as MySQL, PostgreSQL and SQLite.
 
