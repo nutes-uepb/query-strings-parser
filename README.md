@@ -134,7 +134,7 @@ app.use(qs({
 | `age=lt:30` | Search where the user wants results that age is lower than 30. | `{ filters: { age: { $lt: 30 } } }` |
 | `age=lte:30` | Search where the user wants results that age is lower or equal than 30. | `{ filters: { age: { $lte: 30 } } }` |
 
-#### 3.5 Data
+#### 3.5 Date
 | Query | Description | Result |
 | ------ | ------ | ------ |
 | `?start_at=2018-11-10&end_at=2018-12-10` | Search where the user wants results between 2018-12-10 and 2018-12-12. | `{ filters: { $and: [ { created_at: { $lt: '2018-12-10T23:59:59' } }, { created_at: { $gte: '2018-11-10T00:00:00' } } ] } }` |
