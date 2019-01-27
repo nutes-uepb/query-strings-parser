@@ -232,7 +232,7 @@ describe('queryFilter()', function () {
                 options.default.filters = expect_filters
 
                 qs({})(req, res, function next() {
-                    validateFilterWithDate(req, options)
+                    expect(req.query.filters).to.eql({})
                 })
                 done()
             })
