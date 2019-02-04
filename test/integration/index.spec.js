@@ -42,26 +42,21 @@ describe('queryFilter()', function () {
                     })
             })
         })
-    })
-})
 
-/*
         context('when query contains pagination param with string limit as skip', function () {
             it('should return req.query with set pagination params', function (done) {
                 const expect_pagination = {limit: Number.MAX_SAFE_INTEGER, skip: 2}
-
-                const query = {limit: 'nine', skip: '2'}
-                const req = httpMocks.createRequest({method: 'GET', url: '/', query: query})
-                const res = httpMocks.createResponse()
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.pagination.limit = expect_pagination.limit
                 options.default.pagination.skip = expect_pagination.skip
 
-                qs({})(req, res, function next() {
-                    validate(req, options)
-                })
-                done()
+                request(app)
+                    .get('?limit=nine&skip=2')
+                    .then(res => {
+                        validate(res.body, options)
+                        done()
+                    })
             })
         })
 
@@ -69,18 +64,16 @@ describe('queryFilter()', function () {
             it('should return req.query with set pagination params', function (done) {
                 const expect_pagination = {limit: 10, skip: 0}
 
-                const query = {limit: '10', skip: 'two'}
-                const req = httpMocks.createRequest({method: 'GET', url: '/', query: query})
-                const res = httpMocks.createResponse()
-
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.pagination.limit = expect_pagination.limit
                 options.default.pagination.skip = expect_pagination.skip
 
-                qs({})(req, res, function next() {
-                    validate(req, options)
-                })
-                done()
+                request(app)
+                    .get('?limit=10&skip=two')
+                    .then(res => {
+                        validate(res.body, options)
+                        done()
+                    })
             })
         })
 
@@ -88,17 +81,15 @@ describe('queryFilter()', function () {
             it('should return req.query with set ordination params', function (done) {
                 const expect_sort = {name: 'asc', age: 'desc'}
 
-                const query = {sort: 'name,-age'}
-                const req = httpMocks.createRequest({method: 'GET', url: '/', query: query})
-                const res = httpMocks.createResponse()
-
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.sort = expect_sort
 
-                qs({})(req, res, function next() {
-                    validate(req, options)
-                })
-                done()
+                request(app)
+                    .get('?sort=name,-age')
+                    .then(res => {
+                        validate(res.body, options)
+                        done()
+                    })
             })
         })
 
@@ -106,32 +97,15 @@ describe('queryFilter()', function () {
             it('should return req.query with set field params', function (done) {
                 const expect_fields = {name: 1, age: 1}
 
-                const query = {fields: 'name, age'}
-                const req = httpMocks.createRequest({method: 'GET', url: '/', query: query})
-                const res = httpMocks.createResponse()
-
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.fields = expect_fields
 
-                qs({})(req, res, function next() {
-                    validate(req, options)
-                })
-                done()
-            })
-        })
-
-
-        context('when query filters param value is a object', function () {
-            it('should return req.query as default middleware options', function (done) {
-
-                const query = {value: {and: 123}}
-                const req = httpMocks.createRequest({method: 'GET', url: '/', query: query})
-                const res = httpMocks.createResponse()
-
-                qs({})(req, res, function next() {
-                    validate(req, default_options)
-                })
-                done()
+                request(app)
+                    .get('?fields=name, age')
+                    .then(res => {
+                        validate(res.body, options)
+                        done()
+                    })
             })
         })
 
@@ -139,18 +113,15 @@ describe('queryFilter()', function () {
             it('should return req.query with set field params', function (done) {
                 const expect_filters = {name: 'lucas', age: 30}
 
-                const query = {name: 'lucas', age: '30'}
-                const req = httpMocks.createRequest({method: 'GET', url: '/', query: query})
-                const res = httpMocks.createResponse()
-
-
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.filters = expect_filters
 
-                qs({})(req, res, function next() {
-                    validate(req, options)
-                })
-                done()
+                request(app)
+                    .get('?name=lucas&age=30')
+                    .then(res => {
+                        validate(res.body, options)
+                        done()
+                    })
             })
         })
 
@@ -172,22 +143,17 @@ describe('queryFilter()', function () {
                     '$or': [{job: 'Developer'}, {job: 'Engineer'}]
                 }
 
-                const query = {
-                    name: ['lucas******', '******douglas', '*****jorge********'],
-                    '.school.name.': 'UEPB',
-                    timestamp: '2018-12-05',
-                    job: 'Developer,Engineer'
-                }
-                const req = httpMocks.createRequest({method: 'GET', url: '/', query: query})
-                const res = httpMocks.createResponse()
-
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.filters = expect_filters
 
-                qs({})(req, res, function next() {
-                    validate(req, options)
-                })
-                done()
+                const query = '?name=lucas******&name=******douglas&name=*****jorge********&.school.name.=UEPB' +
+                    '&timestamp=2018-12-05&job=Developer,Engineer'
+                request(app)
+                    .get(query)
+                    .then(res => {
+                        validate(res.body, options)
+                        done()
+                    })
             })
         })
 
@@ -201,25 +167,24 @@ describe('queryFilter()', function () {
                     sleep_hour: '22:40'
                 }
 
-                const query = {
-                    name: 'lucas',
-                    age: 'gt:30',
-                    timestamp: 'gt:2018-12-05',
-                    created_at: 'lte:2018-12-06',
-                    sleep_hour: '22:40'
-                }
-                const req = httpMocks.createRequest({method: 'GET', url: '/', query: query})
-                const res = httpMocks.createResponse()
-
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.filters = expect_filters
 
-                qs({})(req, res, function next() {
-                    validate(req, options)
-                })
-                done()
+                const query = '?name=lucas&age=gt:30&timestamp=gt:2018-12-05&created_at=lte:2018-12-06'+
+                    '&sleep_hour=22:40'
+
+                request(app)
+                    .get(query)
+                    .then(res => {
+                        validate(res.body, options)
+                        done()
+                    })
             })
         })
+    })
+})
+
+/*
 
         context('when query contains date filters param', function () {
             it('should return req.query with set start_at params as today', function (done) {
@@ -696,9 +661,11 @@ describe('queryFilter()', function () {
 function dateToString(date) {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${formatDay(date.getDate())}`
 }
+
 function formatDay(day) {
     return day < 10 ? '0'.concat(day) : day
 }
+
 function validateFilterWithDate(req, options) {
     expect(req.query).is.not.null
     expect(req.query).is.not.eql({})
@@ -708,6 +675,7 @@ function validateFilterWithDate(req, options) {
     expect(req.query.fields).to.eql(options.default.fields)
     expect(req.query.filters).to.have.property('$and')
 }
+
 */
 
 
