@@ -27,8 +27,7 @@ describe('QueryString: Filters', function () {
 
     context('when use the default options without query', function () {
         it('should return a JSON with default filters params', function (done) {
-            var result = filter.filters({}, default_options)
-            expect(result).is.not.null
+            const result = filter.filters({}, default_options)
             expect(result).to.eql(default_options.default.filters)
             done()
         })
@@ -36,7 +35,6 @@ describe('QueryString: Filters', function () {
 })
 
 function verify(result) {
-    expect(result).is.not.null
     expect(result).to.have.property('name')
     expect(result).to.have.property('age')
     expect(result.name).to.eql('lucas')

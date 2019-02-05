@@ -15,8 +15,8 @@ exports = module.exports.parseSort = function (_query, _default) {
     return read.parseSort(_query, _default)
 }
 
-exports = module.exports.parsePagination = function (_query, _default) {
-    return read.parsePagination(_query, _default)
+exports = module.exports.parsePagination = function (_query, _default, _use_page) {
+    return read.parsePagination(_query, _default, _use_page)
 }
 
 exports = module.exports.parseFilter = function (_query, _default) {
