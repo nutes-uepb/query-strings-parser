@@ -4,7 +4,7 @@ const request = require('supertest')
 const express = require('express')
 const app = express()
 
-app.use(qs(default_options))
+app.use(qs())
 
 app.get('/', (req, res) => {
     res.status(200).send(req.query)
@@ -204,18 +204,38 @@ describe('queryFilter()', function () {
                     })
             })
 
-            it('should return req.query with set start_at params as date', function () {
+            it('should return req.query with set end_at params as today', function () {
                 const expect_filters = {
                     $and: [
                         {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
-                        {created_at: {$gte: '2018-12-05T00:00:00'}}
+                        {created_at: {$gte: '2019-02-05T00:00:00'}}
                     ]
                 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.filters = expect_filters
 
-                const query = '?start_at=2018-12-05'
+                const query = '?start_at=2019-02-05&end_at=today'
+
+                return request(app)
+                    .get(query)
+                    .then(res => {
+                        validate(res.body, options)
+                    })
+            })
+
+            it('should return req.query with set start_at params as date', function () {
+                const expect_filters = {
+                    $and: [
+                        {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
+                        {created_at: {$gte: '2018-12-05T00:00:01'}}
+                    ]
+                }
+
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.filters = expect_filters
+
+                const query = '?start_at=2018-12-05T00:00:01'
 
                 return request(app)
                     .get(query)
@@ -302,7 +322,7 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
-                        validate(res.body, options)
+                        validateWithPeriod(res.body, options)
                     })
             })
 
@@ -322,7 +342,7 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
-                        validate(res.body, options)
+                        validateWithPeriod(res.body, options)
                     })
             })
 
@@ -342,7 +362,7 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
-                        validate(res.body, options)
+                        validateWithPeriod(res.body, options)
                     })
             })
 
@@ -362,7 +382,7 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
-                        validate(res.body, options)
+                        validateWithPeriod(res.body, options)
                     })
             })
 
@@ -382,27 +402,27 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
-                        validate(res.body, options)
+                        validateWithPeriod(res.body, options)
                     })
             })
 
             it('should return req.query with period as month and end_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-02-24T23:59:59'}},
-                        {created_at: {$gte: '2019-01-24T00:00:00'}}
+                        {created_at: {$lt: '2019-01-24T23:59:59'}},
+                        {created_at: {$gte: '2018-12-24T00:00:00'}}
                     ]
                 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.filters = expect_filters
 
-                const query = '?period=1m&end_at=2019-02-24'
+                const query = '?period=1m&end_at=2019-01-24'
 
                 return request(app)
                     .get(query)
                     .then(res => {
-                        validate(res.body, options)
+                        validateWithPeriod(res.body, options)
                     })
             })
 
@@ -422,7 +442,7 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
-                        validate(res.body, options)
+                        validateWithPeriod(res.body, options)
                     })
             })
 
@@ -442,7 +462,7 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
-                        validate(res.body, options)
+                        validateWithPeriod(res.body, options)
                     })
             })
 
@@ -465,6 +485,26 @@ describe('queryFilter()', function () {
                         validate(res.body, options)
                     })
             })
+
+            it('should return req.query with today end_at for invalid period', function () {
+                const expect_filters = {
+                    $and: [
+                        {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
+                        {created_at: {$gte: '2018-12-05T00:00:01'}}
+                    ]
+                }
+
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.filters = expect_filters
+
+                const query = '?period=12&start_at=2018-12-05T00:00:01'
+
+                return request(app)
+                    .get(query)
+                    .then(res => {
+                        validate(res.body, options)
+                    })
+            })
         })
     })
 })
@@ -478,6 +518,16 @@ function validate(query, options) {
     expect(query.sort).to.eql(options.default.sort)
     expect(query.fields).to.eql(options.default.fields)
     expect(query.filters).to.eql(options.default.filters)
+}
+
+function validateWithPeriod(query, options) {
+    expect(query).is.not.null
+    expect(query).is.not.eql({})
+    expect(query.pagination.limit).to.eql(options.default.pagination.limit)
+    expect(query.pagination.skip).to.eql(options.default.pagination.skip)
+    expect(query.sort).to.eql(options.default.sort)
+    expect(query.fields).to.eql(options.default.fields)
+    expect(query.filters).to.have.property('$and')
 }
 
 function normalizeDate(date, isDateStart) {

@@ -10,6 +10,13 @@ describe('QueryString: Parsers', function () {
             })
         })
 
+        context('when query is passed as object', function () {
+            it('should return parse query fields', function () {
+                const query = {fields: 'name,age,created_at'}
+                verifyFields(index.parseFields(query, {}))
+            })
+        })
+
         context('when use parse with default fields', function () {
             it('should return parse query fields merged with default fields', function () {
                 const query = '?fields=name,age,created_at'
@@ -26,6 +33,13 @@ describe('QueryString: Parsers', function () {
         context('when use parse without default sort', function () {
             it('should return parse query sort', function () {
                 const query = '?sort=name,-age,created_at'
+                verifySort(index.parseSort(query, {}))
+            })
+        })
+
+        context('when query is passed as object', function () {
+            it('should return parse query sort', function () {
+                const query = {sort: 'name,-age,created_at'}
                 verifySort(index.parseSort(query, {}))
             })
         })
@@ -49,6 +63,13 @@ describe('QueryString: Parsers', function () {
             })
         })
 
+        context('when query is passed as object', function () {
+            it('should return parse query pagination', function () {
+                const query = {limit: '20', page: '3'}
+                verifyPage(index.parsePagination(query, {}, true))
+            })
+        })
+
         context('when use parse with default pagination', function () {
             it('should return parse query pagination', function () {
                 const query = '?page=3'
@@ -61,6 +82,13 @@ describe('QueryString: Parsers', function () {
         context('when use parse without default filters', function () {
             it('should return parse query filter', function () {
                 const query = '?name=lucas&age=30'
+                verifyFilter(index.parseFilter(query, {}))
+            })
+        })
+
+        context('when query is passed as object', function () {
+            it('should return parse query filter', function () {
+                const query = {name: 'lucas', age: '30'}
                 verifyFilter(index.parseFilter(query, {}))
             })
         })
@@ -80,6 +108,13 @@ describe('QueryString: Parsers', function () {
         context('when use parse without default date fields', function () {
             it('should return parse query date', function () {
                 const query = '?start_at=2019-02-05T00:00:00&end_at=2019-02-05T23:59:59'
+                verifyDate(index.parseDate(query, {}))
+            })
+        })
+
+        context('when query is passed as object', function () {
+            it('should return parse query date', function () {
+                const query = {start_at: '2019-02-05T00:00:00', end_at: '2019-02-05T23:59:59'}
                 verifyDate(index.parseDate(query, {}))
             })
         })
