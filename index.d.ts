@@ -13,14 +13,14 @@ declare namespace queryStringsParser {
 
         parseFilter(query?: string | object, options?: IOptions): any
 
-        parseDate(query?: string | object, date_field?: IDateField): any
+        parseDate(query?: string | object, date_fields?: IDateFields): any
     }
 
     export interface IOptions {
         default?: IDefault
         use_page?: boolean
         client_db?: string
-        date_field?: IDateField
+        date_fields?: IDateFields
     }
 
     export interface IDefault {
@@ -36,7 +36,7 @@ declare namespace queryStringsParser {
         limit?: number
     }
 
-    export interface IDateField {
+    export interface IDateFields {
         start_at?: string
         end_at?: string
     }

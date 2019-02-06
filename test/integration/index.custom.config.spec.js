@@ -17,8 +17,8 @@ const custom_options = {
     use_page: true,
     client_db: 'mongodb',
     date_fields: {
-        start_at: 'created_at',
-        end_at: 'created_at'
+        start_at: 'timestamp',
+        end_at: 'timestamp'
     }
 }
 
