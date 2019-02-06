@@ -116,16 +116,3 @@ function validate(query, options) {
     expect(query.fields).to.eql(options.default.fields)
     expect(query.filters).to.eql(options.default.filters)
 }
-
-function normalizeDate(date, isDateStart) {
-    if (isDateStart) {
-        return date.replace(/\D/g, '').replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3T00:00:00')
-    }
-    return date.replace(/\D/g, '').replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3T23:59:59')
-}
-
-function dateToString(date) {
-    return `${date.getFullYear()}-`
-        .concat(`${(date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : '0'.concat((date.getMonth() + 1))}-`)
-        .concat(`${date.getDate() > 9 ? date.getDate() : '0'.concat(date.getDate())}`)
-}
