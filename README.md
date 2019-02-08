@@ -110,11 +110,13 @@ app.use(qs({
 
 For more details, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/2.-Usage-Examples) page.
 
-### 3. Supported Query Strings
+## Supported Query Strings
 
 For informations and details about the supported query strings, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/3.-Supported-Query-Strings) page.
 
+## New Features
 
+- Support for parser functions. For informations and details about parser functions, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers) page.
 ## Future Features
 - ¹Support for relational databases such as MySQL, PostgreSQL and SQLite.
 
