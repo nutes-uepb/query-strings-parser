@@ -102,7 +102,7 @@ app.use(qs({
  *    pagination: {
  *        limit: 100,
  *        page: 1
- *    }
+ *    },
  *    original: '?fields=name,age&age=30'
  * }
  */
