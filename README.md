@@ -39,7 +39,8 @@ app.get('/', (req, res) => {
  *    pagination: {
  *        skip: 10,
  *        limit: 10
- *    }
+ *    },
+ *    original: '?fields=name,age&skip=10&limit=10&sort=created_at'
  * }
  */
 ```
@@ -58,7 +59,10 @@ options = {
     },
     use_page: false,
     client_db: 'mongodb',
-    date_field: 'created_at'
+    date_field: date_field: {
+      start_at: 'created_at',
+      end_at: 'created_at'
+  }
 }
 ```
 If the options are not provided, the default values will be used for the treatment of queries strings.
@@ -99,6 +103,7 @@ app.use(qs({
  *        limit: 100,
  *        page: 1
  *    }
+ *    original: '?fields=name,age&age=30'
  * }
  */
 ```
