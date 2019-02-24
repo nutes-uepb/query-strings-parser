@@ -41,7 +41,7 @@ describe('QueryString: Ordination', function () {
 
     context('when use the default options without query', function () {
         it('should return a JSON with default ordination params', function (done) {
-            var result = ordination.sort({}, default_options)
+            const result = ordination.sort({}, default_options)
             expect(result).is.not.null
             expect(result).to.eql({})
             done()
@@ -50,8 +50,8 @@ describe('QueryString: Ordination', function () {
 
     context('when use custom params without query', function () {
         it('should return a JSON with custom params', function () {
-            var custom_options = { default: { sort: { created_at: 'asc' }}}
-            var result = ordination.sort({}, custom_options)
+            const custom_options = { default: { sort: { created_at: 'asc' }}}
+            const result = ordination.sort({}, custom_options)
             expect(result).is.not.null
             expect(result).to.have.property('created_at')
             expect(result.created_at).to.eql('asc')
@@ -61,7 +61,6 @@ describe('QueryString: Ordination', function () {
 })
 
 function verify(result) {
-    expect(result).is.not.null
     expect(result).to.have.property('name')
     expect(result).to.have.property('age')
     expect(result).to.have.property('created_at')

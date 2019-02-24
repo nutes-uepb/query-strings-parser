@@ -47,26 +47,25 @@ app.get('/', (req, res) => {
 #### The middleware uses the following defaults:
 ```js
 options = {
+    use_page: false,
+    client_db: 'mongodb',
+    date_field: {
+      start_at: 'created_at',
+      end_at: 'created_at'
+    },
     default: {
+        fields: {},
+        sort: {},
+        filters: {},
         pagination: {
             limit: Number.MAX_SAFE_INTEGER,
             skip: 0,
             page: 1
-        },
-        fields: {},
-        sort: {},
-        filters: {}
-    },
-    use_page: false,
-    client_db: 'mongodb',
-    date_field: date_field: {
-      start_at: 'created_at',
-      end_at: 'created_at'
-  }
+        }        
+    }    
 }
 ```
 If the options are not provided, the default values will be used for the treatment of queries strings.
-
 
 ### 2. Using custom configurations:
 ```js
@@ -80,7 +79,7 @@ app.use(qs({
   date_field: {
       start_at: 'timestamp',
       end_at: 'timestamp'
-  }
+  },
   default: {
       fields: {name: 1 , age: 1, number: 1, _id: 0},
       sort: { created_at: 'desc' },
@@ -110,11 +109,13 @@ app.use(qs({
 
 For more details, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/2.-Usage-Examples) page.
 
-### 3. Supported Query Strings
+## Supported Query Strings
 
 For informations and details about the supported query strings, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/3.-Supported-Query-Strings) page.
 
+## New Features
 
+- Support for parser functions. For informations and details about parser functions, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers) page.
 ## Future Features
 - ¹Support for relational databases such as MySQL, PostgreSQL and SQLite.
 

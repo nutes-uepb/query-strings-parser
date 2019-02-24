@@ -6,7 +6,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains limit and page params as string', function () {
         it('should return a JSON with pagination fields', function (done) {
             default_options.use_page = true
-            var result = pagination.pagination({ limit: '10', page: '3' }, default_options)
+            var result = pagination.pagination({limit: '10', page: '3'}, default_options)
             verifyPage(result)
             expect(result.limit).to.eql(10)
             expect(result.page).to.eql(3)
@@ -17,7 +17,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains limit and skip params as string', function () {
         it('should return a JSON with pagination fields', function (done) {
             default_options.use_page = false
-            var result = pagination.pagination({ limit: '10', skip: '20' }, default_options)
+            const result = pagination.pagination({limit: '10', skip: '20'}, default_options)
             verifySkip(result)
             expect(result.limit).to.eql(10)
             expect(result.skip).to.eql(20)
@@ -28,7 +28,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains only page param as string', function () {
         it('should return a JSON with pagination fields, with limit equals 2^53-1', function (done) {
             default_options.use_page = true
-            var result = pagination.pagination({ page: '3' }, default_options)
+            const result = pagination.pagination({page: '3'}, default_options)
             verifyPage(result)
             expect(result.limit).to.eql(Number.MAX_SAFE_INTEGER)
             expect(result.page).to.eql(3)
@@ -39,7 +39,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains only skip param as string', function () {
         it('should return a JSON with pagination fields, with limit equals 2^53-1', function (done) {
             default_options.use_page = false
-            var result = pagination.pagination({ skip: '10' }, default_options)
+            const result = pagination.pagination({skip: '10'}, default_options)
             verifySkip(result)
             expect(result.limit).to.eql(Number.MAX_SAFE_INTEGER)
             expect(result.skip).to.eql(10)
@@ -50,7 +50,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains limit and page params as array', function () {
         it('should return a JSON with pagination fields', function (done) {
             default_options.use_page = true
-            var result = pagination.pagination({ limit: ['10', '2'], page: ['3', '4'] }, default_options)
+            const result = pagination.pagination({limit: ['10', '2'], page: ['3', '4']}, default_options)
             verifyPage(result)
             expect(result.limit).to.eql(10)
             expect(result.page).to.eql(3)
@@ -61,7 +61,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains limit and skip params as array', function () {
         it('should return a JSON with pagination fields', function (done) {
             default_options.use_page = false
-            var result = pagination.pagination({ limit: ['10', '2'], skip: ['20', '30'] }, default_options)
+            const result = pagination.pagination({limit: ['10', '2'], skip: ['20', '30']}, default_options)
             verifySkip(result)
             expect(result.limit).to.eql(10)
             expect(result.skip).to.eql(20)
@@ -72,7 +72,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains only page param as array', function () {
         it('should return a JSON with pagination fields, with limit equals 2^53-1', function (done) {
             default_options.use_page = true
-            var result = pagination.pagination({ page: ['3', '4'] }, default_options)
+            const result = pagination.pagination({page: ['3', '4']}, default_options)
             verifyPage(result)
             expect(result.limit).to.eql(Number.MAX_SAFE_INTEGER)
             expect(result.page).to.eql(3)
@@ -83,7 +83,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains only skip param as array', function () {
         it('should return a JSON with pagination fields, with limit equals 2^53-1', function (done) {
             default_options.use_page = false
-            var result = pagination.pagination({ skip: ['10', '20'] }, default_options)
+            const result = pagination.pagination({skip: ['10', '20']}, default_options)
             verifySkip(result)
             expect(result.limit).to.eql(Number.MAX_SAFE_INTEGER)
             expect(result.skip).to.eql(10)
@@ -94,7 +94,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains blank space in page param', function () {
         it('should return a JSON with pagination fields, ignoring the blank space', function (done) {
             default_options.use_page = true
-            var result = pagination.pagination({ limit: '10', page: '  3         ' }, default_options)
+            const result = pagination.pagination({limit: '10', page: '  3         '}, default_options)
             verifyPage(result)
             expect(result.limit).to.eql(10)
             expect(result.page).to.eql(3)
@@ -105,7 +105,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains blank space in skip param', function () {
         it('should return a JSON with pagination fields, ignoring the blank space', function (done) {
             default_options.use_page = false
-            var result = pagination.pagination({ limit: '10', skip: '  20         ' }, default_options)
+            const result = pagination.pagination({limit: '10', skip: '  20         '}, default_options)
             verifySkip(result)
             expect(result.limit).to.eql(10)
             expect(result.skip).to.eql(20)
@@ -116,7 +116,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains special character or letters in page param', function () {
         it('should return a JSON with pagination fields, ignoring the special character', function (done) {
             default_options.use_page = true
-            var result = pagination.pagination({ limit: '10', page: '3$@#!@%+*&Asadas' }, default_options)
+            const result = pagination.pagination({limit: '10', page: '3$@#!@%+*&Asadas'}, default_options)
             verifyPage(result)
             expect(result.limit).to.eql(10)
             expect(result.page).to.eql(3)
@@ -127,7 +127,7 @@ describe('QueryString: Pagination', function () {
     context('when page query contains special character or letters in skip param', function () {
         it('should return a JSON with pagination fields, ignoring the special character', function (done) {
             default_options.use_page = false
-            var result = pagination.pagination({ limit: '10', skip: '20$@#!@%+*&Asadas' }, default_options)
+            const result = pagination.pagination({limit: '10', skip: '20$@#!@%+*&Asadas'}, default_options)
             verifySkip(result)
             expect(result.limit).to.eql(10)
             expect(result.skip).to.eql(20)
@@ -137,7 +137,7 @@ describe('QueryString: Pagination', function () {
 
     context('when use the default options without query', function () {
         it('should return a JSON with default params', function (done) {
-            var result = pagination.pagination({}, default_options)
+            const result = pagination.pagination({}, default_options)
             verifySkip(result)
             expect(result.limit).to.eql(default_options.default.pagination.limit)
             expect(result.skip).to.eql(default_options.default.pagination.skip)
@@ -147,7 +147,7 @@ describe('QueryString: Pagination', function () {
 
     context('when use custom options without query with limit and skip params', function () {
         it('should return a JSON with custom params', function (done) {
-            var custom_options = {
+            const custom_options = {
                 default: {
                     pagination: {
                         limit: 15,
@@ -156,7 +156,7 @@ describe('QueryString: Pagination', function () {
                 },
                 use_page: false
             }
-            var result = pagination.pagination({}, custom_options)
+            const result = pagination.pagination({}, custom_options)
             verifySkip(result)
             expect(result.limit).to.eql(15)
             expect(result.skip).to.eql(10)
@@ -166,7 +166,7 @@ describe('QueryString: Pagination', function () {
 
     context('when use custom options without query with limit and page params', function () {
         it('should return a JSON with custom params', function (done) {
-            var custom_options = {
+            const custom_options = {
                 default: {
                     pagination: {
                         limit: 15,
@@ -175,7 +175,7 @@ describe('QueryString: Pagination', function () {
                 },
                 use_page: true
             }
-            var result = pagination.pagination({}, custom_options)
+            const result = pagination.pagination({page: 'one'}, custom_options)
             verifyPage(result)
             expect(result.limit).to.eql(15)
             expect(result.page).to.eql(2)
@@ -185,13 +185,11 @@ describe('QueryString: Pagination', function () {
 })
 
 function verifySkip(result) {
-    expect(result).is.not.null
     expect(result).to.have.property('limit')
     expect(result).to.have.property('skip')
 }
+
 function verifyPage(result) {
-    expect(result).is.not.null
     expect(result).to.have.property('limit')
     expect(result).to.have.property('page')
 }
-
