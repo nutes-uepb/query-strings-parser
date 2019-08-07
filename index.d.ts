@@ -5,6 +5,8 @@ declare namespace queryStringsParser {
     export interface QueryStringsParser {
         (options?: IOptions): any
 
+        parser(query?: string | object, options?: IOptions): any
+
         parseFields(query?: string | object, options?: IOptions): any
 
         parseSort(query?: string | object, options?: IOptions): any

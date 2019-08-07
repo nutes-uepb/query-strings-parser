@@ -7,8 +7,8 @@ exports = module.exports = function (params) {
     return read.parser(params)
 }
 
-exports = module.exports.parser = function (query, defaults) {
-    return read.parseAll(query, defaults)
+exports = module.exports.parser = function (query, _default, _options) {
+    return read.parseAll(query, _default, _options)
 }
 
 exports = module.exports.parseFields = function (_query, _default) {
