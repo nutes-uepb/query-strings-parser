@@ -24,17 +24,17 @@
   ],
   "keywords": [
     "middleware",
+    "query",
     "query-string",
+    "querystring",
+    "querystrings",
+    "qs",
     "parser",
     "stringfy",
     "encode",
     "decode",
     "searchparams",
     "url",
-    "querystring",
-    "querystrings",
-    "qs",
-    "query",
     "string"
   ],
   "engines": {
