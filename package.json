@@ -1,15 +1,14 @@
 {
   "name": "query-strings-parser",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Middleware to transform query strings in a format that is recognized by the MongoDB, MySQL and other databases...",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --clean --all --reporter=text mocha --opts test/mocha.opts test/**/*.spec.js",
-    "test:unit": "mocha --opts test/mocha.opts test/unit/*.spec.js",
-    "test:integration": "mocha --opts test/mocha.opts test/integration/*.spec.js",
-    "test:cov": "nyc --clean --all --reporter=html --reporter=text mocha --opts test/mocha.opts test/**/*.spec.js",
-    "test:travis": "nyc mocha --opts test/mocha.opts test/**/*.spec.js && nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc --clean --all --reporter=text-summary mocha --opts test/mocha.opts test/**/*.spec.js",
+    "test:unit": "nyc --clean --all --reporter=text-summary mocha --opts test/mocha.opts test/unit/*.spec.js",
+    "test:integration": "nyc --clean --all --reporter=text-summary mocha --opts test/mocha.opts test/integration/*.spec.js",
+    "test:cov": "nyc --clean --all --reporter=html --reporter=text mocha --opts test/mocha.opts test/**/*.spec.js"
   },
   "directories": {
     "lib": "lib",
@@ -39,14 +38,14 @@
     "string"
   ],
   "engines": {
-    "node": ">= 6.14"
+    "node": ">=6"
   },
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
-    "express": "^4.16.4",
-    "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
-    "supertest": "^3.4.2"
+    "express": "^4.17.1",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "supertest": "^4.0.2"
   }
 }
