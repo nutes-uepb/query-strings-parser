@@ -1,7 +1,5 @@
 'use strict'
-
 const read = require('./lib/read')
-
 
 exports = module.exports = function (params) {
     return read.parser(params)

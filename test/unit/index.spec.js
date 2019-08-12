@@ -119,11 +119,87 @@ describe('QueryString: Parsers', function () {
             })
         })
 
-        context('when use parse with defualt date fields', function () {
+        context('when use parse with default date fields', function () {
             it('should return parse query date merge with default date', function () {
                 const query = '?start_at=2019-02-05T00:00:00&end_at=2019-02-05T23:59:59'
                 const result = index.parseDate(query, {start_at: 'created_at', end_at: 'created_at'})
                 verifyDate(result)
+            })
+        })
+    })
+
+    describe('parser()', function () {
+        context('when parser is used with defaults options', function () {
+            it('should return object with fields, sort, filters, pagination and original query', function () {
+                verifyParser(index.parser(''))
+            })
+
+            it('should return parse query fields', function () {
+                const query = '?fields=name,age,created_at'
+                verifyFields(index.parser(query).fields)
+            })
+
+            it('should return parse query sort', function () {
+                const query = '?sort=name,-age,created_at'
+                verifySort(index.parser(query).sort)
+            })
+
+            it('should return parse query pagination', function () {
+                const query = '?limit=20&skip=3'
+                const result = index.parser(query)
+                expect(result.pagination).to.have.property('limit', 20)
+                expect(result.pagination).to.have.property('skip', 3)
+            })
+
+            it('should return parse query filter', function () {
+                const query = '?name=lucas&age=30'
+                verifyFilter(index.parser(query).filters)
+            })
+
+            it('should return parse query date', function () {
+                const query = '?start_at=2019-02-05T00:00:00&end_at=2019-02-05T23:59:59'
+                verifyDate(index.parser(query).filters)
+            })
+        })
+
+        context('when parser is used with custom options', function () {
+            it('should return parse query fields merged with default fields', function () {
+                const query = '?fields=name,age,created_at'
+                const result = index.parser(query, {fields: {_id: 0}})
+                verifyFields(result.fields)
+                expect(result.fields).to.have.property('_id', 0)
+            })
+
+            it('should return parsing query classification merged with custom classification', function () {
+                const query = '?sort=name,-age,created_at'
+                const result = index.parser(query, {sort: {_id: 'desc'}})
+                verifySort(result.sort)
+                expect(result.sort).to.have.property('_id', 'desc')
+            })
+
+            it('should return parse query pagination', function () {
+                const query = '?page=3'
+                verifyPage(index.parser(query,
+                    {pagination: {limit: 20}},
+                    {use_page: true}
+                ).pagination)
+            })
+
+            it('should return parse query filters merge with custom filters', function () {
+                const query = '?name=lucas&age=30'
+                const result = index.parser(query, {filters: {'job': 'Engineer'}})
+                verifyFilter(result.filters)
+                expect(result.filters).to.have.property('job', 'Engineer')
+            })
+
+            it('should return parse query date merge with default date', function () {
+                const query = '?start_at=2019-02-05T00:00:00&end_at=2019-02-05T23:59:59'
+                const result = index.parser(
+                    query,
+                    {},
+                    {date_fields: {start_at: 'timestamp', end_at: 'timestamp'}})
+                expect(result.filters.$and[0]).to.have.all.keys('timestamp')
+                expect(result.filters.$and[1]).to.have.all.keys('timestamp')
             })
         })
     })
@@ -166,4 +242,12 @@ function verifyDate(result) {
     expect(result.$and).to.have.lengthOf(2)
     expect(result.$and[0]).to.have.all.keys('created_at')
     expect(result.$and[1]).to.have.all.keys('created_at')
+}
+
+function verifyParser(result) {
+    expect(result).to.have.property('fields')
+    expect(result).to.have.property('sort')
+    expect(result).to.have.property('filters')
+    expect(result).to.have.property('pagination')
+    expect(result).to.have.property('original')
 }

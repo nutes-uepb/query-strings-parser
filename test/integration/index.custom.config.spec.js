@@ -108,7 +108,6 @@ describe('queryFilter()', function () {
 })
 
 function validate(query, options) {
-    expect(query).is.not.null
     expect(query).is.not.eql({})
     expect(query.pagination.limit).to.eql(options.default.pagination.limit)
     expect(query.pagination.page).to.eql(options.default.pagination.page)

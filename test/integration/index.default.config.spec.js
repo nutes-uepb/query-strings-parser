@@ -511,7 +511,6 @@ describe('queryFilter()', function () {
 
 
 function validate(query, options) {
-    expect(query).is.not.null
     expect(query).is.not.eql({})
     expect(query.pagination.limit).to.eql(options.default.pagination.limit)
     expect(query.pagination.skip).to.eql(options.default.pagination.skip)
@@ -521,7 +520,6 @@ function validate(query, options) {
 }
 
 function validateWithPeriod(query, options) {
-    expect(query).is.not.null
     expect(query).is.not.eql({})
     expect(query.pagination.limit).to.eql(options.default.pagination.limit)
     expect(query.pagination.skip).to.eql(options.default.pagination.skip)
