@@ -135,7 +135,7 @@ describe('queryFilter()', function () {
                             name: {'$options': 'i', '$regex': '^lucas'}
                         },
                         {
-                            name: {'$options': 'i', '$regex': 'douglas&'}
+                            name: {'$options': 'i', '$regex': 'douglas$'}
                         },
                         {
                             name: {'$options': 'i', '$regex': 'jorge'}

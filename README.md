@@ -10,13 +10,12 @@ To ensure the smooth operation of the middleware, your web application must be b
   
 ## Installing  
 Use the npm command to install this library into your project:  
-```  
-npm i --save query-strings-parser  
-```  
+```shell 
+npm i query-strings-parser --save  
+```
   
 ### Usage Examples  
-#### 1. Using default configurations  
-```js  
+```js 
 const express = require('express')  
 const qs = require('query-strings-parser')  
 const app = express()  
@@ -46,32 +45,9 @@ app.get('/', (req, res) => {
  * }  
  */  
 ```  
-#### The middleware uses the following defaults:  
-```js  
-options = {  
-    use_page: false,  
-    client_db: 'mongodb',  
-    date_field: {  
-      start_at: 'created_at',  
-      end_at: 'created_at'  
-    },  
-    default: {  
-        fields: {},  
-        sort: {},  
-        filters: {},  
-        pagination: {  
-            limit: Number.MAX_SAFE_INTEGER,  
-            skip: 0,  
-            page: 1  
-        }          
-    }      
-}  
-```  
-If the options are not provided, the default values will be used for the treatment of queries strings.  
   
-  
-### 2. Using custom configurations:  
-```js  
+### Using custom configurations:  
+```js 
 const express = require('express')  
 const qs = require('query-strings-parser')  
 const app = express()  
@@ -109,17 +85,159 @@ app.use(qs({
  * }  
  */  
 ```  
+
+The middleware uses the following defaults:  
+```js  
+options = {  
+    use_page: false,  
+    client_db: 'mongodb',  
+    date_field: {  
+      start_at: 'created_at',  
+      end_at: 'created_at'  
+    },
+    default: {  
+        fields: {},  
+        sort: {},  
+        filters: {},  
+        pagination: {  
+            limit: Number.MAX_SAFE_INTEGER,  
+            skip: 0,  
+            page: 1  
+        }          
+    }      
+}  
+```
+
+If the options are not provided, the default values will be used for the treatment of queries strings.  
   
 For more details, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/2.-Usage-Examples) page.  
-  
-## Supported Query Strings  
-For informations and details about the supported query strings, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/3.-Supported-Query-Strings) page.  
-  
-## New Features  
-- Support for parser functions. For informations and details about parser functions, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers) page.  
 
-## Future Features  
-- ¹Support for relational databases such as MySQL, PostgreSQL and SQLite.  
+### Parsers Functions
+To use these functions, simply call them through the middleware instance and pass them the query string to be converted and its default values. If you pass the default values ​​a merge will be performed with the result of the query strings. Here are some examples of each analyzer:
+
+- `parser()`
+
+```js
+const qs = require('query-strings-parser')
+
+const query = '?fields=name,age&page=1&limit=10&sort=created_at'
+console.log(qs.parseFields(query, {}, { use_page: true }))
+
+/**
+* Result: 
+* {
+*   fields: { name: 1, age: 1 },
+*   sort: { created_at: 'asc' },
+*   filters: {},
+*   pagination: { limit: 10, page: 1 },
+*   original:  '?fields=name,age&page=1&limit=10&sort=created_at'
+* }
+*/
+```  
+For more [details >>](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers#parser)
+
+- `parseFields()`
+
+```js
+
+const qs = require('query-strings-parser')
+
+const query = '?fields=name,age'
+console.log(qs.parseFields(query))
+
+/**
+* Result: 
+* { 
+*     name: 1,
+*     age: 1
+* }
+*/
+```  
+For more [details >>](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers#parsefields)
+
+- `parseSort()`
+
+```js
+const qs = require('query-strings-parser')
+
+const query = '?sort=name,-age,created_at'
+console.log(qs.parseSort(query))
+
+/**
+* Result: 
+* { 
+*     name: 'asc',
+*     age: 'desc',
+*     created_at: 'asc'
+* }
+*/
+```
+For more [details >>](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers#parsesort)
+
+- `parsePagination()`
+
+```js
+const qs = require('query-strings-parser')
+
+const query = '?limit=20&page=3'
+console.log(qs.parsePagination(query, {}, true))
+
+/**
+* Result: 
+* { 
+*     limit: 20,
+*     page: 3 
+* }
+*/
+```
+ For more [details >>](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers#parsepagination)
+ 
+ - `parseFilter()`
+              
+```js
+ const qs = require('query-strings-parser')
+ 
+ const query = '?name=elvis&age=80'
+ console.log(qs.parseFilter(query))
+ 
+ /**
+ * Result: 
+ * { 
+ *     name: 'elvis',
+ *     age: 80
+ * }
+ */
+```
+For more [details >>](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers#parsefilter)
+ 
+- `parseDate()`
+
+ ```js
+ const qs = require('query-strings-parser')
+ 
+ const query = '?start_at=2019-02-05T00:00:00&end_at=2019-02-05T23:59:59'
+ console.log(qs.parseDate(query))
+ 
+ /**
+ * Result: 
+ * { 
+ *    $and: [
+ *       { created_at: { lt: 2019-02-05T23:59:59 }},
+ *       { created_at: { gte: 2019-02-05T00:00:00 }}
+ *   ]}
+ * }
+ */
+ ```
+For more [details >>](https://github.com/nutes-uepb/query-strings-parser/wiki/4.-Parsers#parsedate)
+ 
+### Supported Query Strings  
+For informations and details about the supported query strings, access the [wiki](https://github.com/nutes-uepb/query-strings-parser/wiki/3.-Supported-Query-Strings) page.  
+
+---------- 
+
+### Future Features  
+- ¹Support for relational databases such as MySQL, PostgreSQL and SQLite.
+
 
 [//]: # (These are reference links used in the body of this note.)
 [node.js]: <https://nodejs.org>  
