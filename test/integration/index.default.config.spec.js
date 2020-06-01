@@ -88,7 +88,6 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
-                        console.table(res.body)
                         validate(res.body, options)
                     })
             })
