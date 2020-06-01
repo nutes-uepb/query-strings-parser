@@ -1,14 +1,14 @@
 {
   "name": "query-strings-parser",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Middleware to transform query strings in a format that is recognized by the MongoDB, MySQL and other databases...",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --clean --all --reporter=text-summary mocha --opts test/mocha.opts test/**/*.spec.js",
-    "test:unit": "nyc --clean --all --reporter=text-summary mocha --opts test/mocha.opts test/unit/*.spec.js",
-    "test:integration": "nyc --clean --all --reporter=text-summary mocha --opts test/mocha.opts test/integration/*.spec.js",
-    "test:cov": "nyc --clean --all --reporter=html --reporter=text mocha --opts test/mocha.opts test/**/*.spec.js"
+    "test": "nyc --clean --all --reporter=text-summary mocha test/**/*.spec.js",
+    "test:unit": "nyc --clean --all --reporter=text-summary mocha test/unit/*.spec.js",
+    "test:integration": "nyc --clean --all --reporter=text-summary mocha test/integration/*.spec.js",
+    "test:cov": "nyc --clean --all --reporter=html --reporter=text mocha test/**/*.spec.js"
   },
   "directories": {
     "lib": "lib",
@@ -44,8 +44,8 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "express": "^4.17.1",
-    "mocha": "^6.2.1",
-    "nyc": "^14.1.1",
+    "mocha": "^7.2.0",
+    "nyc": "^15.1.0",
     "supertest": "^4.0.2"
   }
 }
