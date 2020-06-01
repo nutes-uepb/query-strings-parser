@@ -172,9 +172,8 @@ describe('QueryString: Parsers', function () {
 
             it('should return parsing query classification merged with custom classification', function () {
                 const query = '?sort=name,-age,created_at'
-                const result = index.parser(query, {sort: {_id: 'desc'}})
-                verifySort(result.sort)
-                expect(result.sort).to.have.property('_id', 'desc')
+                const result = index.parser(query, {sort: {_id: -1}})
+                expect(result.sort).to.have.property('_id', -1)
             })
 
             it('should return parse query pagination', function () {
@@ -218,9 +217,9 @@ function verifySort(result) {
     expect(result).to.have.property('name')
     expect(result).to.have.property('age')
     expect(result).to.have.property('created_at')
-    expect(result.name).to.eql('asc')
-    expect(result.age).to.eql('desc')
-    expect(result.created_at).to.eql('asc')
+    expect(result.name).to.eql(1)
+    expect(result.age).to.eql(-1)
+    expect(result.created_at).to.eql(1)
 }
 
 function verifyPage(result) {

@@ -1,0 +1,7 @@
+exit: true # could be expressed as "no-exit: true"
+recursive: true
+reporter: spec
+require:
+  - 'test/global.js'
+slow: 5000
+timeout: 5000 # same as "no-timeout: true" or "timeout: 0"

@@ -50,29 +50,24 @@ describe('QueryString: Ordination', function () {
 
     context('when use custom params', function () {
         it('should return a JSON with custom params', function () {
-            const custom_options = {default: {sort: {created_at: 'asc'}}}
+            const custom_options = {default: {sort: {created_at: 1}}}
             const result = ordination.sort({}, custom_options)
-            expect(result).is.not.null
-            expect(result).to.have.property('created_at')
-            expect(result.created_at).to.eql('asc')
+            expect(result.created_at).to.eql(1)
         })
 
         it('should return a JSON with custom parameters and those of the query', function () {
-            const custom_options = {default: {sort: {created_at: 'asc'}}}
+            const custom_options = {default: {sort: {created_at: 1}}}
             const result = ordination.sort({sort: '-created_at,-age,name'}, custom_options)
-            expect(result.created_at).to.eql('desc')
-            expect(result.age).to.eql('desc')
-            expect(result.name).to.eql('asc')
+            expect(result.created_at).to.eql(-1)
+            expect(result.age).to.eql(-1)
+            expect(result.name).to.eql(1)
         })
     })
 })
 
 function verify(result) {
-    expect(result).to.have.property('name')
-    expect(result).to.have.property('age')
-    expect(result).to.have.property('created_at')
-    expect(result.name).to.eql('desc')
-    expect(result.age).to.eql('asc')
-    expect(result.created_at).to.eql('asc')
+    expect(result.name).to.eql(-1)
+    expect(result.age).to.eql(1)
+    expect(result.created_at).to.eql(1)
 
 }

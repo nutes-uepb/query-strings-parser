@@ -1,6 +1,0 @@
---reporter spec
---require test/global.js
---recursive
---slow 5000
---timeout 5000
---exit

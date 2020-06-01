@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
  * Result (req.query):  
  * {  
  *    fields: { name: 1, age: 1 },  
- *    sort: { created_at: 'asc' }  
+ *    sort: { created_at: 1 }  
  *    filters: {},  
  *    pagination: {  
  *        skip: 10,  
@@ -61,7 +61,7 @@ app.use(qs({
   },  
   default: {  
       fields: {name: 1 , age: 1, number: 1, _id: 0},  
-      sort: { created_at: 'desc' },  
+      sort: { created_at: -1 },  
       filters: {},  
       pagination: {  
           page: 1,  
@@ -75,7 +75,7 @@ app.use(qs({
  * Result (req.query):  
  * {  
  *    fields: { name: 1, age: 1},  
- *    sort: { created_at: 'desc' }  
+ *    sort: { created_at: -1 }  
  *    filters: {age: 30},  
  *    pagination: {  
  *        limit: 100,  
@@ -127,7 +127,7 @@ console.log(qs.parseFields(query, {}, { use_page: true }))
 * Result: 
 * {
 *   fields: { name: 1, age: 1 },
-*   sort: { created_at: 'asc' },
+*   sort: { created_at: 1 },
 *   filters: {},
 *   pagination: { limit: 10, page: 1 },
 *   original:  '?fields=name,age&page=1&limit=10&sort=created_at'
@@ -166,9 +166,9 @@ console.log(qs.parseSort(query))
 /**
 * Result: 
 * { 
-*     name: 'asc',
-*     age: 'desc',
-*     created_at: 'asc'
+*     name: 1,
+*     age: -1,
+*     created_at: 1
 * }
 */
 ```
