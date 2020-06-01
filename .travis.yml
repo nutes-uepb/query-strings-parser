@@ -7,10 +7,9 @@ node_js:
   - "10"
   - "11"
   - "12"
+  - "13"
+  - "14"
 sudo: false
-cache:
-  directories:
-  - node_modules
 before_script:
   - npm install && npm install coveralls mocha-lcov-reporter --save-dev
 script:

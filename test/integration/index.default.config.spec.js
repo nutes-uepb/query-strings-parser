@@ -78,7 +78,7 @@ describe('queryFilter()', function () {
 
         context('when query contains ordination param', function () {
             it('should return req.query with set ordination params', function () {
-                const expect_sort = {name: 'asc', age: 'desc'}
+                const expect_sort = {name: 1, age: -1}
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.sort = expect_sort
@@ -88,6 +88,7 @@ describe('queryFilter()', function () {
                 return request(app)
                     .get(query)
                     .then(res => {
+                        console.table(res.body)
                         validate(res.body, options)
                     })
             })
