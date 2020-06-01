@@ -31,10 +31,22 @@ describe('QueryString: Filters', function () {
         })
     })
 
-    context('when use the default options without query', function () {
+    context('when use the default options', function () {
         it('should return a JSON with default filters params', function (done) {
             const result = filter.filters({}, default_options)
             expect(result).to.eql(default_options.default.filters)
+            done()
+        })
+
+        it('should return a JSON with default filters params and those of the query', function (done) {
+            const options = {
+                ...default_options, ...{
+                    default: {filters: {age: '19', name: 'John'}}
+                }
+            }
+            const result = filter.filters({age: '21'}, options)
+            expect(result.name).to.eql(options.default.filters.name)
+            expect(result.age).to.eql(21)
             done()
         })
     })
