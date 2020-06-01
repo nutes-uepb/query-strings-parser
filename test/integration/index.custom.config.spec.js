@@ -83,7 +83,7 @@ describe('queryFilter()', function () {
             })
         })
 
-        context('when use pagination with page and query page is not a number', function () {
+        context('when use pagination with page and query page and limit is not a number', function () {
             it('should return pagination param with default limit', function () {
 
                 const expect_pagination = {
@@ -94,7 +94,7 @@ describe('queryFilter()', function () {
                 const options = JSON.parse(JSON.stringify(custom_options))
                 options.default.pagination = expect_pagination
 
-                const query = '?limit=teen'
+                const query = '?page=current&limit=teen'
 
                 return request(app)
                     .get(query)

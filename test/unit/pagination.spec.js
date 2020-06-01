@@ -164,7 +164,7 @@ describe('QueryString: Pagination', function () {
         })
     })
 
-    context('when use custom options without query with limit and page params', function () {
+    context('when use custom params', function () {
         it('should return a JSON with custom params', function (done) {
             const custom_options = {
                 default: {
@@ -175,10 +175,27 @@ describe('QueryString: Pagination', function () {
                 },
                 use_page: true
             }
-            const result = pagination.pagination({page: 'one'}, custom_options)
+            const result = pagination.pagination({}, custom_options)
             verifyPage(result)
             expect(result.limit).to.eql(15)
             expect(result.page).to.eql(2)
+            done()
+        })
+
+        it('should return a JSON with custom parameters and those of the query', function (done) {
+            const custom_options = {
+                default: {
+                    pagination: {
+                        limit: 50,
+                        page: 5
+                    }
+                },
+                use_page: true
+            }
+            const result = pagination.pagination({page: '3', limit: '10'}, custom_options)
+            verifyPage(result)
+            expect(result.limit).to.eql(10)
+            expect(result.page).to.eql(3)
             done()
         })
     })
