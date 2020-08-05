@@ -250,7 +250,7 @@ For informations and details about the supported query strings, access the [wiki
 [npm-url]: https://npmjs.org/package/query-strings-parser
 [downloads-image]: https://img.shields.io/npm/dt/query-strings-parser.svg?logo=npm
 [travis-image]: https://img.shields.io/travis/nutes-uepb/query-strings-parser.svg?logo=travis
-[travis-url]: https://travis-ci.org/nutes-uepb/query-strings-parser
+[travis-url]: https://travis-ci.com/nutes-uepb/query-strings-parser
 [coverage-image]: https://coveralls.io/repos/github/nutes-uepb/query-strings-parser/badge.svg
 [coverage-url]: https://coveralls.io/github/nutes-uepb/query-strings-parser?branch=master
 [known-vulnerabilities-image]: https://snyk.io/test/github/nutes-uepb/query-strings-parser/badge.svg?targetFile=package.json
