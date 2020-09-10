@@ -10,6 +10,14 @@ describe('QueryString: Ordination', function () {
         })
     })
 
+    context('when ordination query is a second-level string', function () {
+        it('should return a JSON with order params', function (done) {
+            const result = ordination.sort({sort: '-user.age'}, default_options)
+            expect(result['user.age']).to.eql(-1)
+            done()
+        })
+    })
+
     context('when ordination query is an array of strings', function () {
         it('should return a JSON with order params', function (done) {
             verify(ordination.sort({sort: ['-name,age', 'created_at']}, default_options))
