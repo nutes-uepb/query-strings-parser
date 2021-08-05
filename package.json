@@ -1,6 +1,6 @@
 {
   "name": "query-strings-parser",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "Middleware to transform query strings in a format that is recognized by the MongoDB, MySQL and other databases...",
   "license": "MIT",
   "main": "index.js",
@@ -20,7 +20,8 @@
   },
   "author": "Lucas Rocha <lucas.rocha@nutes.uepb.edu.br>",
   "contributors": [
-    "Douglas Rafael <douglas.rafael@nutes.uepb.edu.br>"
+    "Douglas Rafael <douglas.rafael@nutes.uepb.edu.br>",
+    "Jefferson Sampaio <jefferson.medeiros@nutes.uepb.edu.br>"
   ],
   "keywords": [
     "middleware",
@@ -42,10 +43,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "chai": "^4.2.0",
+    "chai": "^4.3.4",
     "express": "^4.17.1",
-    "mocha": "^8.1.3",
+    "mocha": "^9.0.3",
     "nyc": "^15.1.0",
-    "supertest": "^4.0.2"
+    "supertest": "^6.1.4"
   }
 }

@@ -181,6 +181,29 @@ describe('queryFilter()', function () {
                         validate(res.body, options)
                     })
             })
+
+            it('should return req.query with set field params (with $ne filter)', function () {
+                const expect_filters = {
+                    name: 'lucas',
+                    age: {$gt: 30},
+                    type: {$ne: 'admin'},
+                    timestamp: {$gt: '2018-12-05T00:00:00'},
+                    created_at: {$lte: '2018-12-06T00:00:00'},
+                    sleep_hour: '22:40'
+                }
+
+
+                const options = JSON.parse(JSON.stringify(default_options))
+                options.default.filters = expect_filters
+
+                const query = '?name=lucas&age=gt:30&type=ne:admin&timestamp=gt:2018-12-05&created_at=lte:2018-12-06&sleep_hour=22:40'
+
+                return request(app)
+                    .get(query)
+                    .then(res => {
+                        validate(res.body, options)
+                    })
+            })
         })
 
         context('when query contains date filters param', function () {
