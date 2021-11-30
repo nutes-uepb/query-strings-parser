@@ -20,8 +20,10 @@
   },
   "author": "Lucas Rocha <lucas.rocha@nutes.uepb.edu.br>",
   "contributors": [
+    "Adson Macêdo <agnsoft@hotmail.com>",
     "Douglas Rafael <douglas.rafael@nutes.uepb.edu.br>",
-    "Jefferson Sampaio <jefferson.medeiros@nutes.uepb.edu.br>"
+    "Jefferson Sampaio <jefferson.medeiros@nutes.uepb.edu.br>",
+    "Lucas Barbosa <lucas.barbosa@nutes.uepb.edu.br>"
   ],
   "keywords": [
     "middleware",
