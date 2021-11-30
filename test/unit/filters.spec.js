@@ -11,6 +11,24 @@ describe('QueryString: Filters', function () {
         })
     })
 
+    context('when query filters contains an integer with a leading zero', function () {
+        it('should return a JSON with filters params, keeping the leading zero of the number as string', function (done) {
+            const VALUE = '009'
+            const result = filter.filters({ value: VALUE }, default_options)
+            expect(result).to.have.property('value', VALUE)
+            done()
+        })
+    })
+
+    context('when query filters contains an integer that exceeds max safe integer', function () {
+        it('should return a JSON with filters params containing the number as string', function (done) {
+            const VALUE = '9007199254740999'
+            const result = filter.filters({ value: VALUE }, default_options)
+            expect(result).to.have.property('value', VALUE)
+            done()
+        })
+    })
+
     context('when query filters its a object', function () {
         it('should ignore the object param and returns another filters', function () {
             verify(filter.filters({job: {first: 'developer'}, name: 'lucas', age: '30'}, default_options))
