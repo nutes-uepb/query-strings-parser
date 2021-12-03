@@ -6,7 +6,7 @@ describe('QueryString: Filters', function () {
 
     context('when query filters are string/number parameters', function () {
         it('should return a JSON with filters params', function (done) {
-            verify(filter.filters({name: 'lucas', age: '30'}, default_options))
+            verify(filter.filters({ name: 'lucas', age: '30' }, default_options))
             done()
         })
     })
@@ -31,20 +31,20 @@ describe('QueryString: Filters', function () {
 
     context('when query filters its a object', function () {
         it('should ignore the object param and returns another filters', function () {
-            verify(filter.filters({job: {first: 'developer'}, name: 'lucas', age: '30'}, default_options))
+            verify(filter.filters({ job: { first: 'developer' }, name: 'lucas', age: '30' }, default_options))
         })
     })
 
     context('when query filters key contains blank space', function () {
         it('should return a JSON with filters params, ignoring blank spaces', function (done) {
-            verify(filter.filters({' na  me   ': 'lucas', age: '30'}, default_options))
+            verify(filter.filters({ ' na  me   ': 'lucas', age: '30' }, default_options))
             done()
         })
     })
 
     context('when query filters key contains special characters', function () {
         it('should return a JSON with filters params, ignoring the special characteres', function (done) {
-            verify(filter.filters({'#(@@$na%me!?': 'lucas', age: '30'}, default_options))
+            verify(filter.filters({ '#(@@$na%me!?': 'lucas', age: '30' }, default_options))
             done()
         })
     })
@@ -59,10 +59,10 @@ describe('QueryString: Filters', function () {
         it('should return a JSON with default filters params and those of the query', function (done) {
             const options = {
                 ...default_options, ...{
-                    default: {filters: {age: '19', name: 'John'}}
+                    default: { filters: { age: '19', name: 'John' } }
                 }
             }
-            const result = filter.filters({age: '21'}, options)
+            const result = filter.filters({ age: '21' }, options)
             expect(result.name).to.eql(options.default.filters.name)
             expect(result.age).to.eql(21)
             done()
