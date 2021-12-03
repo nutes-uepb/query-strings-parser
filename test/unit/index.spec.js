@@ -12,7 +12,7 @@ describe('QueryString: Parsers', function () {
 
         context('when query is passed as object', function () {
             it('should return parse query fields', function () {
-                const query = {fields: 'name,age,created_at'}
+                const query = { fields: 'name,age,created_at' }
                 verifyFields(index.parseFields(query, {}))
             })
         })
@@ -20,7 +20,7 @@ describe('QueryString: Parsers', function () {
         context('when use parse with default fields', function () {
             it('should return parse query fields merged with default fields', function () {
                 const query = '?fields=name,age,created_at'
-                const parsed_params = index.parseFields(query, {_id: 0})
+                const parsed_params = index.parseFields(query, { _id: 0 })
                 verifyFields(parsed_params)
                 expect(parsed_params).to.have.property('_id')
                 expect(parsed_params._id).to.eql(0)
@@ -39,7 +39,7 @@ describe('QueryString: Parsers', function () {
 
         context('when query is passed as object', function () {
             it('should return parse query sort', function () {
-                const query = {sort: 'name,-age,created_at'}
+                const query = { sort: 'name,-age,created_at' }
                 verifySort(index.parseSort(query, {}))
             })
         })
@@ -47,8 +47,8 @@ describe('QueryString: Parsers', function () {
         context('when use parse with default sort', function () {
             it('should return parse query sort merged with default sort', function () {
                 const query = '?sort=name,-age,created_at'
-                const parsed_params = index.parseSort(query, {_id: 'desc'})
-                verifySort(index.parseSort(query, {_id: 'desc'}))
+                const parsed_params = index.parseSort(query, { _id: 'desc' })
+                verifySort(index.parseSort(query, { _id: 'desc' }))
                 expect(parsed_params).to.have.property('_id')
                 expect(parsed_params._id).to.eql('desc')
             })
@@ -65,7 +65,7 @@ describe('QueryString: Parsers', function () {
 
         context('when query is passed as object', function () {
             it('should return parse query pagination', function () {
-                const query = {limit: '20', page: '3'}
+                const query = { limit: '20', page: '3' }
                 verifyPage(index.parsePagination(query, {}, true))
             })
         })
@@ -73,7 +73,7 @@ describe('QueryString: Parsers', function () {
         context('when use parse with default pagination', function () {
             it('should return parse query pagination', function () {
                 const query = '?page=3'
-                verifyPage(index.parsePagination(query, {limit: 20}, true))
+                verifyPage(index.parsePagination(query, { limit: 20 }, true))
             })
         })
     })
@@ -88,7 +88,7 @@ describe('QueryString: Parsers', function () {
 
         context('when query is passed as object', function () {
             it('should return parse query filter', function () {
-                const query = {name: 'lucas', age: '30'}
+                const query = { name: 'lucas', age: '30' }
                 verifyFilter(index.parseFilter(query, {}))
             })
         })
@@ -96,7 +96,7 @@ describe('QueryString: Parsers', function () {
         context('when use parse with default filters', function () {
             it('should return parse query filters merge with default filters', function () {
                 const query = '?name=lucas&age=30'
-                const result = index.parseFilter(query, {'job': 'Engineer'})
+                const result = index.parseFilter(query, { 'job': 'Engineer' })
                 verifyFilter(result)
                 expect(result).to.have.property('job')
                 expect(result.job).to.eql('Engineer')
@@ -114,7 +114,7 @@ describe('QueryString: Parsers', function () {
 
         context('when query is passed as object', function () {
             it('should return parse query date', function () {
-                const query = {start_at: '2019-02-05T00:00:00', end_at: '2019-02-05T23:59:59'}
+                const query = { start_at: '2019-02-05T00:00:00', end_at: '2019-02-05T23:59:59' }
                 verifyDate(index.parseDate(query, {}))
             })
         })
@@ -122,7 +122,7 @@ describe('QueryString: Parsers', function () {
         context('when use parse with default date fields', function () {
             it('should return parse query date merge with default date', function () {
                 const query = '?start_at=2019-02-05T00:00:00&end_at=2019-02-05T23:59:59'
-                const result = index.parseDate(query, {start_at: 'created_at', end_at: 'created_at'})
+                const result = index.parseDate(query, { start_at: 'created_at', end_at: 'created_at' })
                 verifyDate(result)
             })
         })
@@ -165,28 +165,28 @@ describe('QueryString: Parsers', function () {
         context('when parser is used with custom options', function () {
             it('should return parse query fields merged with default fields', function () {
                 const query = '?fields=name,age,created_at'
-                const result = index.parser(query, {fields: {_id: 0}})
+                const result = index.parser(query, { fields: { _id: 0 } })
                 verifyFields(result.fields)
                 expect(result.fields).to.have.property('_id', 0)
             })
 
             it('should return parsing query classification merged with custom classification', function () {
                 const query = '?sort=name,-age,created_at'
-                const result = index.parser(query, {sort: {_id: -1}})
+                const result = index.parser(query, { sort: { _id: -1 } })
                 expect(result.sort).to.have.property('_id', -1)
             })
 
             it('should return parse query pagination', function () {
                 const query = '?page=3'
                 verifyPage(index.parser(query,
-                    {pagination: {limit: 20}},
-                    {use_page: true}
+                    { pagination: { limit: 20 } },
+                    { use_page: true }
                 ).pagination)
             })
 
             it('should return parse query filters merge with custom filters', function () {
                 const query = '?name=lucas&age=30'
-                const result = index.parser(query, {filters: {'job': 'Engineer'}})
+                const result = index.parser(query, { filters: { 'job': 'Engineer' } })
                 verifyFilter(result.filters)
                 expect(result.filters).to.have.property('job', 'Engineer')
             })
@@ -196,7 +196,7 @@ describe('QueryString: Parsers', function () {
                 const result = index.parser(
                     query,
                     {},
-                    {date_fields: {start_at: 'timestamp', end_at: 'timestamp'}})
+                    { date_fields: { start_at: 'timestamp', end_at: 'timestamp' } })
                 expect(result.filters.$and[0]).to.have.all.keys('timestamp')
                 expect(result.filters.$and[1]).to.have.all.keys('timestamp')
             })
