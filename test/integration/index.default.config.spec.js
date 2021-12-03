@@ -42,7 +42,7 @@ describe('queryFilter()', function () {
 
         context('when query contains pagination param with string limit as skip', function () {
             it('should return req.query with set pagination params', function () {
-                const expect_pagination = {limit: Number.MAX_SAFE_INTEGER, skip: 2}
+                const expect_pagination = { limit: Number.MAX_SAFE_INTEGER, skip: 2 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.pagination.limit = expect_pagination.limit
@@ -60,7 +60,7 @@ describe('queryFilter()', function () {
 
         context('when query contains pagination param with string skip', function () {
             it('should return req.query with set pagination params', function () {
-                const expect_pagination = {limit: 10, skip: 0}
+                const expect_pagination = { limit: 10, skip: 0 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.pagination.limit = expect_pagination.limit
@@ -78,7 +78,7 @@ describe('queryFilter()', function () {
 
         context('when query contains ordination param', function () {
             it('should return req.query with set ordination params', function () {
-                const expect_sort = {name: 1, age: -1}
+                const expect_sort = { name: 1, age: -1 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.sort = expect_sort
@@ -95,7 +95,7 @@ describe('queryFilter()', function () {
 
         context('when query contains fields param', function () {
             it('should return req.query with set field params', function () {
-                const expect_fields = {name: 1, age: 1}
+                const expect_fields = { name: 1, age: 1 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.fields = expect_fields
@@ -112,7 +112,7 @@ describe('queryFilter()', function () {
 
         context('when query contains simple filters param', function () {
             it('should return req.query with set field params', function () {
-                const expect_filters = {name: 'lucas', age: 30}
+                const expect_filters = { name: 'lucas', age: 30 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.filters = expect_filters
@@ -138,17 +138,17 @@ describe('queryFilter()', function () {
                             name: { '$options': 'i', '$regex': 'd[o,ó,ö,ò,ô][u,ü,ú,ù]gl[a,á,à,ä,â,ã]s$' }
                         },
                         {
-                            name: { '$options': 'i', '$regex': 'j[o,ó,ö,ò,ô]rg[e,é,ë,ê]' }
+                            name: { '$options': 'i', '$regex': 'J[O,Ó,Ö,Ò,Ô]RG[E,É,Ë,Ê]' }
                         }],
                     'school.name': 'UEPB',
                     'timestamp': '2018-12-05T00:00:00',
-                    '$or': [{job: 'Developer'}, {job: 'Engineer'}]
+                    '$or': [{ job: 'Developer' }, { job: 'Engineer' }]
                 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
                 options.default.filters = expect_filters
 
-                const query = '?name=lucas****&name=*****douglas&name=*****jorge*****&.school.name.=UEPB'
+                const query = '?name=lucas****&name=*****douglas&name=*****JORGE*****&.school.name.=UEPB'
                     .concat('&timestamp=2018-12-05&job=Developer,Engineer')
 
                 return request(app)
@@ -163,9 +163,9 @@ describe('queryFilter()', function () {
             it('should return req.query with set field params', function () {
                 const expect_filters = {
                     name: 'lucas',
-                    age: {$gt: 30},
-                    timestamp: {$gt: '2018-12-05T00:00:00'},
-                    created_at: {$lte: '2018-12-06T00:00:00'},
+                    age: { $gt: 30 },
+                    timestamp: { $gt: '2018-12-05T00:00:00' },
+                    created_at: { $lte: '2018-12-06T00:00:00' },
                     sleep_hour: '22:40'
                 }
 
@@ -185,10 +185,10 @@ describe('queryFilter()', function () {
             it('should return req.query with set field params (with $ne filter)', function () {
                 const expect_filters = {
                     name: 'lucas',
-                    age: {$gt: 30},
-                    type: {$ne: 'admin'},
-                    timestamp: {$gt: '2018-12-05T00:00:00'},
-                    created_at: {$lte: '2018-12-06T00:00:00'},
+                    age: { $gt: 30 },
+                    type: { $ne: 'admin' },
+                    timestamp: { $gt: '2018-12-05T00:00:00' },
+                    created_at: { $lte: '2018-12-06T00:00:00' },
                     sleep_hour: '22:40'
                 }
 
@@ -210,8 +210,8 @@ describe('queryFilter()', function () {
             it('should return req.query with set start_at params as today', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
-                        {created_at: {$gte: normalizeDate(dateToString(new Date()), true)}}
+                        { created_at: { $lt: normalizeDate(dateToString(new Date()), false) } },
+                        { created_at: { $gte: normalizeDate(dateToString(new Date()), true) } }
                     ]
                 }
 
@@ -230,8 +230,8 @@ describe('queryFilter()', function () {
             it('should return req.query with set end_at params as today', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
-                        {created_at: {$gte: '2019-02-05T00:00:00'}}
+                        { created_at: { $lt: normalizeDate(dateToString(new Date()), false) } },
+                        { created_at: { $gte: '2019-02-05T00:00:00' } }
                     ]
                 }
 
@@ -250,8 +250,8 @@ describe('queryFilter()', function () {
             it('should return req.query with set start_at params as date', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
-                        {created_at: {$gte: '2018-12-05T00:00:01'}}
+                        { created_at: { $lt: normalizeDate(dateToString(new Date()), false) } },
+                        { created_at: { $gte: '2018-12-05T00:00:01' } }
                     ]
                 }
 
@@ -271,8 +271,8 @@ describe('queryFilter()', function () {
             it('should return req.query with set start_at params as dateTime', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
-                        {created_at: {$gte: '2018-12-05T00:00:00'}}
+                        { created_at: { $lt: normalizeDate(dateToString(new Date()), false) } },
+                        { created_at: { $gte: '2018-12-05T00:00:00' } }
                     ]
                 }
 
@@ -292,8 +292,8 @@ describe('queryFilter()', function () {
 
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2018-12-11T00:00:00'}},
-                        {created_at: {$gte: '2018-12-01T00:00:00'}}]
+                        { created_at: { $lt: '2018-12-11T00:00:00' } },
+                        { created_at: { $gte: '2018-12-01T00:00:00' } }]
                 }
 
 
@@ -313,8 +313,8 @@ describe('queryFilter()', function () {
 
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2018-12-11T03:02:01'}},
-                        {created_at: {$gte: '2018-12-01T01:02:03'}}]
+                        { created_at: { $lt: '2018-12-11T03:02:01' } },
+                        { created_at: { $gte: '2018-12-01T01:02:03' } }]
                 }
 
                 const options = JSON.parse(JSON.stringify(default_options))
@@ -332,8 +332,8 @@ describe('queryFilter()', function () {
             it('should return req.query with period as day and start_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-01-26T23:59:59'}},
-                        {created_at: {$gte: '2019-01-24T00:00:00'}}
+                        { created_at: { $lt: '2019-01-26T23:59:59' } },
+                        { created_at: { $gte: '2019-01-24T00:00:00' } }
                     ]
                 }
 
@@ -352,8 +352,8 @@ describe('queryFilter()', function () {
             it('should return req.query with period as day and end_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-01-26T00:00:00'}},
-                        {created_at: {$gte: '2019-01-24T00:00:00'}}
+                        { created_at: { $lt: '2019-01-26T00:00:00' } },
+                        { created_at: { $gte: '2019-01-24T00:00:00' } }
                     ]
                 }
 
@@ -372,8 +372,8 @@ describe('queryFilter()', function () {
             it('should return req.query with period as week and start_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-01-26T23:59:59'}},
-                        {created_at: {$gte: '2019-01-19T00:00:00'}}
+                        { created_at: { $lt: '2019-01-26T23:59:59' } },
+                        { created_at: { $gte: '2019-01-19T00:00:00' } }
                     ]
                 }
 
@@ -392,8 +392,8 @@ describe('queryFilter()', function () {
             it('should return req.query with period as week and end_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-01-26T23:59:59'}},
-                        {created_at: {$gte: '2019-01-19T00:00:00'}}
+                        { created_at: { $lt: '2019-01-26T23:59:59' } },
+                        { created_at: { $gte: '2019-01-19T00:00:00' } }
                     ]
                 }
 
@@ -412,8 +412,8 @@ describe('queryFilter()', function () {
             it('should return req.query with period as month and start_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-02-24T23:59:59'}},
-                        {created_at: {$gte: '2019-01-24T00:00:00'}}
+                        { created_at: { $lt: '2019-02-24T23:59:59' } },
+                        { created_at: { $gte: '2019-01-24T00:00:00' } }
                     ]
                 }
 
@@ -432,8 +432,8 @@ describe('queryFilter()', function () {
             it('should return req.query with period as month and end_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-01-24T23:59:59'}},
-                        {created_at: {$gte: '2018-12-24T00:00:00'}}
+                        { created_at: { $lt: '2019-01-24T23:59:59' } },
+                        { created_at: { $gte: '2018-12-24T00:00:00' } }
                     ]
                 }
 
@@ -452,8 +452,8 @@ describe('queryFilter()', function () {
             it('should return req.query with period as year and start_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-02-24T23:59:59'}},
-                        {created_at: {$gte: '2018-02-24T00:00:00'}}
+                        { created_at: { $lt: '2019-02-24T23:59:59' } },
+                        { created_at: { $gte: '2018-02-24T00:00:00' } }
                     ]
                 }
 
@@ -472,8 +472,8 @@ describe('queryFilter()', function () {
             it('should return req.query with period as year and end_at param', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: '2019-02-24T23:59:59'}},
-                        {created_at: {$gte: '2018-02-24T00:00:00'}}
+                        { created_at: { $lt: '2019-02-24T23:59:59' } },
+                        { created_at: { $gte: '2018-02-24T00:00:00' } }
                     ]
                 }
 
@@ -492,8 +492,8 @@ describe('queryFilter()', function () {
             it('should return req.query with today start_at for invalid period', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
-                        {created_at: {$gte: normalizeDate(dateToString(new Date()), true)}}
+                        { created_at: { $lt: normalizeDate(dateToString(new Date()), false) } },
+                        { created_at: { $gte: normalizeDate(dateToString(new Date()), true) } }
                     ]
                 }
 
@@ -512,8 +512,8 @@ describe('queryFilter()', function () {
             it('should return req.query with today end_at for invalid period', function () {
                 const expect_filters = {
                     $and: [
-                        {created_at: {$lt: normalizeDate(dateToString(new Date()), false)}},
-                        {created_at: {$gte: '2018-12-05T00:00:01'}}
+                        { created_at: { $lt: normalizeDate(dateToString(new Date()), false) } },
+                        { created_at: { $gte: '2018-12-05T00:00:01' } }
                     ]
                 }
 
