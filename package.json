@@ -1,6 +1,6 @@
 {
   "name": "query-strings-parser",
-  "version": "2.1.11",
+  "version": "2.1.13",
   "description": "Middleware to transform query strings in a format that is recognized by the MongoDB, MySQL and other databases...",
   "license": "MIT",
   "main": "index.js",
@@ -23,6 +23,7 @@
     "Adson Macêdo <agnsoft@hotmail.com>",
     "Douglas Rafael <douglas.rafael@nutes.uepb.edu.br>",
     "Jefferson Sampaio <jefferson.medeiros@nutes.uepb.edu.br>",
+    "João Pedro Miranda <berrytern@gmail.com>",
     "Lucas Barbosa <lucas.barbosa@nutes.uepb.edu.br>"
   ],
   "keywords": [
